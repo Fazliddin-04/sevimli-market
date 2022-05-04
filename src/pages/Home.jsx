@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import { EffectFade, Autoplay } from 'swiper'
+import Card from '../components/Card'
+// import MotionCard from '../components/MotionCard'
 const imgList = [
   'https://images.unsplash.com/photo-1575808142341-e39853744dbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODV8fGZydWl0cyUyMGFuZCUyMHZlZ2V0YWJsZXN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
@@ -46,6 +48,9 @@ function Home() {
     { icon: <FaChartLine size={24} />, label: 'Books' },
   ])
   const [selectedTab, setSelectedTab] = useState(tabs[0])
+
+  // eslint-disable-next-line no-unused-vars
+  const [selectedId, setSelectedId] = useState(null)
 
   const { t } = useTranslation()
   useEffect(() => {
@@ -104,7 +109,7 @@ function Home() {
             ))} */}
           </Swiper>
         </section>
-        <section id="catalog" className="mt-36">
+        <section id="catalog" className="mt-36 pb-20">
           <h4 className="font-bold text-lg italic text-orange-400 capitalize">
             - {t('categories')}
           </h4>
@@ -158,7 +163,7 @@ function Home() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <main>
+          <main className="relative">
             <AnimatePresence exitBeforeEnter>
               <motion.div
                 key={selectedTab ? selectedTab.label : 'empty'}
@@ -168,20 +173,121 @@ function Home() {
                 transition={{ duration: 0.15 }}
                 className="flex flex-wrap"
               >
-                <div className="w-full  sm:w-[calc(50%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 w-full  sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] flex-initial min-h-[400px] text-center bg-red-400">
-                  Hello world
-                </div>
-                <div className="w-full  sm:w-[calc(50%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)]  flex-initial min-h-[400px] text-center bg-red-400">
-                  Hello world
-                </div>
-                <div className="w-full  sm:w-[calc(50%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)]  flex-initial min-h-[400px] text-center bg-red-400">
-                  Hello world
-                </div>
-                <div className="w-full  sm:w-[calc(50%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)]  flex-initial min-h-[400px] text-center bg-red-400">
-                  Hello world
-                </div>
+                <motion.div
+                  layoutId={1}
+                  onClick={() => setSelectedId(1)}
+                  className="w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6"
+                >
+                  <Card
+                    off={'$30'}
+                    price={'$20'}
+                    title={'Hello world'}
+                    category={'Parfumeria'}
+                    imgUrl={
+                      'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
+                    }
+                    badgeColor="lime"
+                  />
+                </motion.div>
+
+                <motion.div
+                  layoutId={2}
+                  onClick={() => setSelectedId(2)}
+                  className="min-h-[400px] w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 flex-initial"
+                >
+                  <Card
+                    off={'$30'}
+                    price={'$20'}
+                    title={'Hello world'}
+                    category={'Parfumeria'}
+                    imgUrl={
+                      'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
+                    }
+                    badgeColor="fuchsia"
+                  />
+                </motion.div>
+                <motion.div
+                  layoutId={3}
+                  onClick={() => setSelectedId(3)}
+                  className="min-h-[400px] w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 flex-initial"
+                >
+                  <Card
+                    off={'$30'}
+                    price={'$20'}
+                    title={'Hello world'}
+                    category={'Parfumeria'}
+                    imgUrl={
+                      'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
+                    }
+                    badgeColor="blue"
+                  />
+                </motion.div>
+                <motion.div
+                  layoutId={4}
+                  onClick={() => setSelectedId(4)}
+                  className="min-h-[400px] w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 flex-initial"
+                >
+                  <Card
+                    off={'$30'}
+                    price={'$20'}
+                    title={'Hello world'}
+                    category={'Parfumeria'}
+                    imgUrl={
+                      'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
+                    }
+                    badgeColor="yellow"
+                  />
+                </motion.div>
               </motion.div>
             </AnimatePresence>
+            {/*  <div
+                className={`fixed h-screen w-screen inset-0 ${
+                  selectedId ? 'z-10' : 'z-[-1]'
+                }`}
+                onClick={() => setSelectedId(null)}
+              ></div>
+              <div
+                className={`absolute h-4/5 w-2/3 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${
+                  selectedId ? 'z-10' : 'z-[-1]'
+                }`}
+              >
+                 <AnimatePresence>
+                  {selectedId && (
+                    <motion.div
+                      layoutId={selectedId}
+                      onClick={() => setSelectedId(null)}
+                      className="w-full h-full bg-slate-200 rounded-3xl flex items-center shadow-xl text-black"
+                    >
+                      <motion.button
+                        onClick={() => setSelectedId(null)}
+                        className="absolute bg-gray-500 w-10 h-10 rounded-full right-1 top-1 text-white"
+                      >
+                        X
+                      </motion.button>
+                      <motion.div className="flex justify-center flex-1  h-2/3 mb-8">
+                        <img
+                          src="https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png"
+                          alt=""
+                        />
+                      </motion.div>
+                      <motion.div className="flex-1">
+                        <motion.h3 className="text-4xl font-semibold mb-4">
+                          Hello world
+                        </motion.h3>
+                        <motion.div className="flex items-center gap-6">
+                          <motion.div className="uppercase font-bold text-emerald-500 bg-emerald-500/10 px-4 h-10 flex items-center rounded-full">
+                            Parfumeria
+                          </motion.div>
+                          <motion.h3 className="text-2xl font-semibold">
+                            $20
+                          </motion.h3>
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence> 
+              </div>
+              */}
           </main>
         </section>
       </div>
