@@ -9,7 +9,9 @@ function Card({ off, price, title, category, imgUrl, badgeColor }) {
       <h3 className="text-2xl font-semibold mb-4">{title}</h3>
       <div className="flex items-center gap-6">
         <div
-          className={`uppercase font-bold text-${badgeColor}-500 bg-${badgeColor}-500/10 px-4 h-10 flex items-center rounded-full`}
+          className={`uppercase font-bold ${badgeColor && 'text-red-500'} ${
+            badgeColor && 'bg-red-500/20'
+          } px-4 h-10 flex items-center rounded-full`}
         >
           {category}
         </div>

@@ -7,7 +7,6 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import { EffectFade, Autoplay } from 'swiper'
 import Card from '../components/Card'
-// import MotionCard from '../components/MotionCard'
 const imgList = [
   'https://images.unsplash.com/photo-1575808142341-e39853744dbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODV8fGZydWl0cyUyMGFuZCUyMHZlZ2V0YWJsZXN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
@@ -80,7 +79,7 @@ function Home() {
               {t('intro_title')}
             </h1>
             <a
-              href="#category"
+              href="#catalog"
               className="lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
             >
               {t('go_to_catalog')}
@@ -102,14 +101,9 @@ function Home() {
                 style={{ backgroundImage: `url(${url})` }}
               ></SwiperSlide>
             ))}
-            {/* {imgList.map((url) => (
-              <SwiperSlide>
-                <img src={url} alt="" className="w-full h-full" />
-              </SwiperSlide>
-            ))} */}
           </Swiper>
         </section>
-        <section id="catalog" className="mt-36 pb-20">
+        <section id="catalog" className="pt-36 pb-20">
           <h4 className="font-bold text-lg italic text-orange-400 capitalize">
             - {t('categories')}
           </h4>
@@ -179,6 +173,7 @@ function Home() {
                   className="w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6"
                 >
                   <Card
+                    badgeColor="lime"
                     off={'$30'}
                     price={'$20'}
                     title={'Hello world'}
@@ -186,7 +181,6 @@ function Home() {
                     imgUrl={
                       'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
                     }
-                    badgeColor="lime"
                   />
                 </motion.div>
 
@@ -196,6 +190,7 @@ function Home() {
                   className="min-h-[400px] w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 flex-initial"
                 >
                   <Card
+                    badgeColor="fuchsia"
                     off={'$30'}
                     price={'$20'}
                     title={'Hello world'}
@@ -203,7 +198,6 @@ function Home() {
                     imgUrl={
                       'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
                     }
-                    badgeColor="fuchsia"
                   />
                 </motion.div>
                 <motion.div
@@ -212,14 +206,13 @@ function Home() {
                   className="min-h-[400px] w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 flex-initial"
                 >
                   <Card
-                    off={'$30'}
+                    badgeColor="blue"
                     price={'$20'}
                     title={'Hello world'}
                     category={'Parfumeria'}
                     imgUrl={
                       'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
                     }
-                    badgeColor="blue"
                   />
                 </motion.div>
                 <motion.div
@@ -228,66 +221,17 @@ function Home() {
                   className="min-h-[400px] w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6 flex-initial"
                 >
                   <Card
-                    off={'$30'}
+                    badgeColor="yellow"
                     price={'$20'}
                     title={'Hello world'}
                     category={'Parfumeria'}
                     imgUrl={
                       'https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png'
                     }
-                    badgeColor="yellow"
                   />
                 </motion.div>
               </motion.div>
             </AnimatePresence>
-            {/*  <div
-                className={`fixed h-screen w-screen inset-0 ${
-                  selectedId ? 'z-10' : 'z-[-1]'
-                }`}
-                onClick={() => setSelectedId(null)}
-              ></div>
-              <div
-                className={`absolute h-4/5 w-2/3 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${
-                  selectedId ? 'z-10' : 'z-[-1]'
-                }`}
-              >
-                 <AnimatePresence>
-                  {selectedId && (
-                    <motion.div
-                      layoutId={selectedId}
-                      onClick={() => setSelectedId(null)}
-                      className="w-full h-full bg-slate-200 rounded-3xl flex items-center shadow-xl text-black"
-                    >
-                      <motion.button
-                        onClick={() => setSelectedId(null)}
-                        className="absolute bg-gray-500 w-10 h-10 rounded-full right-1 top-1 text-white"
-                      >
-                        X
-                      </motion.button>
-                      <motion.div className="flex justify-center flex-1  h-2/3 mb-8">
-                        <img
-                          src="https://ui8-hygge.herokuapp.com/hugge/img/products/product-pic-1.png"
-                          alt=""
-                        />
-                      </motion.div>
-                      <motion.div className="flex-1">
-                        <motion.h3 className="text-4xl font-semibold mb-4">
-                          Hello world
-                        </motion.h3>
-                        <motion.div className="flex items-center gap-6">
-                          <motion.div className="uppercase font-bold text-emerald-500 bg-emerald-500/10 px-4 h-10 flex items-center rounded-full">
-                            Parfumeria
-                          </motion.div>
-                          <motion.h3 className="text-2xl font-semibold">
-                            $20
-                          </motion.h3>
-                        </motion.div>
-                      </motion.div>
-                    </motion.div>
-                  )}
-                </AnimatePresence> 
-              </div>
-              */}
           </main>
         </section>
       </div>

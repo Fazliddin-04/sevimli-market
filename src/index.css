@@ -74,6 +74,23 @@ section.intro {
   }
 }
 
+@media (max-width: 1280px) {
+  .swiper-slide-active {
+    background-size: 130%;
+    animation: zoomIn 1s ease forwards;
+  }
+  @keyframes zoomIn {
+    0% {
+      background-size: 130%;
+    }
+    100% {
+      background-size: 140%;
+    }
+  }
+}
+
+
+
 .switch {
   width: 60px;
   height: 40px;
@@ -132,5 +149,4 @@ section.intro {
 #catalog .swiper-slide {
   height: 128px !important;
   overflow: visible !important;
-
 }
