@@ -16,6 +16,7 @@ function Navbar() {
   const [isOn, setIsOn] = useState(false)
 
   const toggleSwitch = () => setIsOn(!isOn)
+
   useEffect(() => {
     if (
       localStorage.theme === 'dark' ||
@@ -55,7 +56,11 @@ function Navbar() {
             <span></span>
             <span></span>
           </div>
-          <Link to="/" className="font-bold text-4xl flex items-center gap-2">
+          <Link
+            to="/"
+            onClick={() => menu && setMenu(!menu)}
+            className="font-bold text-4xl flex items-center gap-2"
+          >
             <img src={cart} alt="cart" width={50} />
             Sevimli
           </Link>
@@ -82,7 +87,8 @@ function Navbar() {
                   <button
                     onClick={() => i18next.changeLanguage(code)}
                     className={`${
-                      code === currentLangCode && 'font-bold text-red-700'
+                      code === currentLangCode &&
+                      'font-bold text-white dark:text-red-700 bg-gray-900 dark:bg-white p-2 rounded'
                     }`}
                   >
                     {name}
@@ -90,7 +96,11 @@ function Navbar() {
                 </div>
               ))}
             </div>
-            <Link to="/profile" className="hidden sm:block">
+            <Link
+              to="/profile"
+              onClick={() => menu && setMenu(!menu)}
+              className="hidden sm:block"
+            >
               <FaRegUser size={22} />
             </Link>
           </div>
@@ -159,137 +169,82 @@ function Navbar() {
                               <FaChevronLeft />
                             </div>
                             <Link
-                              to="/"
+                              to="/category/breakfast"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('for-breakfast')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/lunch"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('for-lunch')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/table"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('for-table')}
+                            </Link>
+
+                            <Link
+                              to="/category/home"
+                              onClick={() => setMenu(!menu)}
+                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                            >
+                              {t('for-home')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/kitchen"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('for-kitchen')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/gift"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('gift')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/personal"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('personal-hygiene')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/appliances"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('home-appliances')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/toys"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('toys')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/sport"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
+                              {t('sport')}
                             </Link>
                             <Link
-                              to="/"
+                              to="/category/casual"
                               onClick={() => setMenu(!menu)}
                               className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
-                            </Link>
-                            <Link
-                              to="/"
-                              onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
-                            >
-                              {t('home')}
+                              {t('casual')}
                             </Link>
                           </motion.div>
                         )}
