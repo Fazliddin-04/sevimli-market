@@ -173,12 +173,12 @@ function Home() {
       <Spinner isShown={loading} />
       <div>
         <section
-          className="bg-slate-200/50 rounded-3xl flex items-center flex-wrap sm:flex-nowrap md:overflow-hidden relative intro mt-96 sm:mt-80 md:mt-0"
+          className="bg-slate-200/50 rounded-3xl flex items-center flex-wrap sm:flex-nowrap md:overflow-hidden relative intro mt-96 md:mt-0"
           // className="backdrop-blur-sm bg-white/30 rounded-3xl flex overflow-hidden intro text-white"
           // className="pt-0 pl-14 text-dark "
         >
           <div
-            className="flex-initial sm:px-10 xl:px-0 xl:pl-14 md:w-full  absolute md:static left-0 -top-96 sm:-top-80"
+            className="flex-initial sm:px-5 xl:px-0 xl:pl-14 md:w-full  absolute md:static left-0 -top-96 sm:-top-80"
             //  className="pt-24 pl-14 w-1/2"
           >
             <h4 className="font-bold text-lg italic text-orange-400 capitalize">
@@ -330,9 +330,9 @@ function Home() {
         </section>
         <section
           id="testimonials"
-          className="bg-slate-200 dark:bg-slate-700/50 p-4 rounded-3xl flex flex-wrap sm:flex-nowrap md:overflow-hidden relative intro mt-80 sm:mt-80 md:mt-0"
+          className="bg-slate-200 dark:bg-slate-700/50 rounded-3xl flex items-center flex-wrap sm:flex-nowrap md:overflow-hidden relative intro mt-80 sm:mt-80 md:mt-0"
         >
-          <div className="lg:w-2/5 md:pt-24 sm:px-10 xl:px-0 xl:pl-14 absolute md:static left-0 -top-60">
+          <div className="lg:w-2/5 sm:px-14 xl:px-0 xl:pl-14 absolute md:static left-0 -top-60">
             <h4 className="font-bold text-lg italic text-orange-400 capitalize">
               - {t('reviews')}
             </h4>
@@ -347,7 +347,7 @@ function Home() {
             pagination={{ clickable: true }}
             loop={true}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
-            className="mySwiper lg:w-2/5"
+            className="mySwiper h-full lg:w-2/5"
           >
             <SwiperSlide className="flex justify-center flex-col text-center md:text-left">
               <div className="h-72">

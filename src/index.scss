@@ -186,7 +186,10 @@ section.intro {
 }
 
 .swiper-pagination {
-  bottom: 10% !important;
+  bottom: 5% !important;
+  @media screen and (min-width: 514px) {
+    bottom: 10% !important;
+  }
   @media screen and (min-width: 768px) {
     text-align: start !important;
   }

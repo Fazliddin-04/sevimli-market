@@ -13,8 +13,10 @@ const languages = [
 ]
 
 function Navbar() {
+  const currentLangCode = cookies.get('i18next') || 'uz'
   const [isOn, setIsOn] = useState(false)
-
+  const [menu, setMenu] = useState(false)
+  const [showCategory, setShowCategory] = useState(false)
   const toggleSwitch = () => setIsOn(!isOn)
 
   useEffect(() => {
@@ -39,16 +41,14 @@ function Navbar() {
       document.documentElement.classList.remove('dark')
     }
   }, [isOn])
-  const currentLangCode = cookies.get('i18next') || 'uz'
-  const [menu, setMenu] = useState(false)
-  const [showCategory, setShowCategory] = useState(false)
+
   const { t } = useTranslation()
   return (
     <>
-      <div className="fixed w-screen py-6 z-40 bg-white/30 backdrop-blur-md">
+      <div className="fixed w-screen py-3 xl:py-6 z-40 bg-white/30 backdrop-blur-md">
         <div className="container px-4 mx-auto flex align-center justify-between">
           <div
-            className={` lg:hidden bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center flex-col gap-1 nav-toggle ${
+            className={` lg:hidden bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center flex-col gap-1 nav-toggle ${
               menu && 'active'
             }`}
             onClick={() => setMenu((prevState) => !prevState)}
@@ -59,9 +59,9 @@ function Navbar() {
           <Link
             to="/"
             onClick={() => menu && setMenu(!menu)}
-            className="font-bold text-4xl flex items-center gap-2"
+            className="font-bold text-2xl md:text-4xl flex items-center gap-2"
           >
-            <img src={cart} alt="cart" width={50} />
+            <img src={cart} alt="cart" className="w-[40px] md:w-[50px]" />
             Sevimli
           </Link>
           <div
@@ -88,7 +88,7 @@ function Navbar() {
                     onClick={() => i18next.changeLanguage(code)}
                     className={`${
                       code === currentLangCode &&
-                      'font-bold text-white dark:text-red-700 bg-gray-900 dark:bg-white p-2 rounded'
+                      'font-bold text-white dark:text-red-700 bg-gray-900 dark:bg-white p-1 sm:p-2 rounded'
                     }`}
                   >
                     {name}
@@ -137,12 +137,12 @@ function Navbar() {
                     <Link
                       to="/"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('home')}
                     </Link>
                     <div
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700 flex items-center gap-2 sm:relative cursor-pointer"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700 flex items-center gap-2 sm:relative cursor-pointer"
                       onClick={() => setShowCategory((prevState) => !prevState)}
                     >
                       {t('categories')} <FaChevronRight size={18} />
@@ -171,21 +171,21 @@ function Navbar() {
                             <Link
                               to="/category/breakfast"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('for-breakfast')}
                             </Link>
                             <Link
                               to="/category/lunch"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('for-lunch')}
                             </Link>
                             <Link
                               to="/category/table"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('for-table')}
                             </Link>
@@ -193,56 +193,56 @@ function Navbar() {
                             <Link
                               to="/category/home"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('for-home')}
                             </Link>
                             <Link
                               to="/category/kitchen"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('for-kitchen')}
                             </Link>
                             <Link
                               to="/category/gift"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('gift')}
                             </Link>
                             <Link
                               to="/category/personal"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('personal-hygiene')}
                             </Link>
                             <Link
                               to="/category/appliances"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('home-appliances')}
                             </Link>
                             <Link
                               to="/category/toys"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('toys')}
                             </Link>
                             <Link
                               to="/category/sport"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('sport')}
                             </Link>
                             <Link
                               to="/category/casual"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('casual')}
                             </Link>
@@ -253,28 +253,28 @@ function Navbar() {
                     <Link
                       to="/blog"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('blog')}
                     </Link>
                     <Link
                       to="/about"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('about')}
                     </Link>
                     <Link
                       to="/contact"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('contact')}
                     </Link>
                     <Link
                       to="/profile"
                       onClick={() => setMenu(!menu)}
-                      className="sm:hidden text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl"
+                      className="sm:hidden text-xl md:text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl"
                     >
                       Profil
                     </Link>
@@ -287,12 +287,12 @@ function Navbar() {
                     <Link
                       to="/"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('home')}
                     </Link>
                     <div
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700 flex items-center gap-2 relative cursor-pointer"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700 flex items-center gap-2 relative cursor-pointer"
                       onClick={() => setShowCategory((prevState) => !prevState)}
                     >
                       {t('categories')} <FaChevronRight size={18} />
@@ -308,21 +308,21 @@ function Navbar() {
                             <Link
                               to="/"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('home')}
                             </Link>
                             <Link
                               to="/"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('home')}
                             </Link>
                             <Link
                               to="/"
                               onClick={() => setMenu(!menu)}
-                              className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                              className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
                               {t('home')}
                             </Link>
@@ -333,28 +333,28 @@ function Navbar() {
                     <Link
                       to="/blog"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('blog')}
                     </Link>
                     <Link
                       to="/about"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('about')}
                     </Link>
                     <Link
                       to="/contact"
                       onClick={() => setMenu(!menu)}
-                      className="text-2xl mb-6 hover:text-red-700 active:text-red-700"
+                      className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                     >
                       {t('contact')}
                     </Link>
                     <Link
                       to="/profile"
                       onClick={() => setMenu(!menu)}
-                      className="sm:hidden text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl"
+                      className="sm:hidden text-xl md:text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl"
                     >
                       Profil
                     </Link>
