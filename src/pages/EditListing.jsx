@@ -18,14 +18,16 @@ function EditListing() {
   const [listing, setListing] = useState(null)
   const { t } = useTranslation()
   const [loading, setLoading] = useState(true)
+  const [loading2, setLoading2] = useState(false)
   const [formData, setFormData] = useState({
     image: [],
     name: '',
     type: '',
+    category: '',
     userRef: '',
   })
 
-  const { image, name } = formData
+  const { image, name, category } = formData
 
   const auth = getAuth()
   const navigate = useNavigate()
@@ -106,7 +108,7 @@ function EditListing() {
   const onSubmit = async (e) => {
     e.preventDefault()
 
-    setLoading(true)
+    setLoading2(true)
 
     if (image.length > 1) {
       setLoading(false)
@@ -158,7 +160,7 @@ function EditListing() {
     const imgUrl = await Promise.all(
       [...image].map((image) => storeImage(image))
     ).catch(() => {
-      setLoading(false)
+      setLoading2(false)
       toast.error('Suratlar yuklanmadi')
       return
     })
@@ -174,9 +176,13 @@ function EditListing() {
     // Update Listing
     const docRef = doc(db, 'listings', params.listingId)
     await updateDoc(docRef, formDataCopy)
-    setLoading(false)
+    setLoading2(false)
     toast.success("Ro'yxat saqlandi")
     navigate(`/`)
+  }
+
+  if (loading2) {
+    return <Spinner isShown={true} />
   }
 
   return (
@@ -185,7 +191,7 @@ function EditListing() {
       {!loading && (
         <>
           <p className="text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold p-4 text-center">
-            <span className="text-red-500">{t('create-title')}</span>
+            <span className="text-red-500">{t('edit-title')}</span>
           </p>
 
           <div className="mx-auto bg-slate-100 dark:bg-slate-900 rounded-xl shadow-lg p-5 w-11/12 sm:w-9/12 sm:p-10">
@@ -380,7 +386,19 @@ function EditListing() {
                 placeholder={t('name-item')}
                 required
               />
-
+              <label className="label">
+                <span>{t('category-item')}</span>
+              </label>
+              <input
+                type="text"
+                name="category"
+                id="category"
+                value={category}
+                onChange={onMutate}
+                className="input bg-transparent input-error"
+                placeholder={t('category-item')}
+                required
+              />
               <label className="label capitalize"> {t('picture')}</label>
               <input
                 className="formInputFile border-error border rounded-t-lg p-2"
@@ -391,7 +409,7 @@ function EditListing() {
                 accept=".jpg,.png,.jpeg"
                 required
               />
-              <div className="alert alert-neutral text-neutral-content border-error border rounded-t-none">
+              <div className="alert alert-neutral text-neutral-content overflow-x-auto border-error border rounded-t-none">
                 <div className="flex-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -406,17 +424,7 @@ function EditListing() {
                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>
-                  <label>
-                    Oldingi rasm:{' '}
-                    <a
-                      href={listing.imgUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline decoration-pink-500 decoration-2 hover:decoration-4 text-white"
-                    >
-                      {listing.imgUrl}
-                    </a>
-                  </label>
+                  Max 1 rasm
                 </div>
               </div>
               <div className="mt-10 flex items-center gap-5">

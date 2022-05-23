@@ -266,44 +266,42 @@ function Home() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <main className="relative">
-            <AnimatePresence exitBeforeEnter>
-              {!loading &&
-                // listings.map(({ id, data }) => (
-                //   <motion.div
-                //     key={selectedTab ? selectedTab.label : 'empty'}
-                //     animate={{ opacity: 1, y: 0 }}
-                //     initial={{ opacity: 0, y: 20 }}
-                //     exit={{ opacity: 0, y: -20 }}
-                //     transition={{ duration: 0.15 }}
-                //     className="flex flex-wrap"
-                //   >
-                //     <motion.div
-                //       layoutId={id}
-                //       onClick={() => setSelectedId(1)}
-                //       className="w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6"
-                //     >
-                //       <Card
-                //         badgeColor="lime"
-                //         off={'$30'}
-                //         price={'$20'}
-                //         title={data.name}
-                //         category={data.type}
-                //         imgUrl={data.imgUrl}
-                //       />
-                //     </motion.div>
-                //   </motion.div>
-                // ))
-                (listings ? (
-                  <ListMotion
-                    key={selectedTab ? selectedTab.label : 'empty'}
-                    items={listings}
-                  />
-                ) : (
-                  <></>
-                ))}
-            </AnimatePresence>
-          </main>
+          <AnimatePresence exitBeforeEnter>
+            {!loading &&
+              // listings.map(({ id, data }) => (
+              //   <motion.div
+              //     key={selectedTab ? selectedTab.label : 'empty'}
+              //     animate={{ opacity: 1, y: 0 }}
+              //     initial={{ opacity: 0, y: 20 }}
+              //     exit={{ opacity: 0, y: -20 }}
+              //     transition={{ duration: 0.15 }}
+              //     className="flex flex-wrap"
+              //   >
+              //     <motion.div
+              //       layoutId={id}
+              //       onClick={() => setSelectedId(1)}
+              //       className="w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6"
+              //     >
+              //       <Card
+              //         badgeColor="lime"
+              //         off={'$30'}
+              //         price={'$20'}
+              //         title={data.name}
+              //         category={data.type}
+              //         imgUrl={data.imgUrl}
+              //       />
+              //     </motion.div>
+              //   </motion.div>
+              // ))
+              (listings ? (
+                <ListMotion
+                  key={selectedTab ? selectedTab.label : 'empty'}
+                  items={listings}
+                />
+              ) : (
+                <></>
+              ))}
+          </AnimatePresence>
         </section>
         <section id="whyUs" className="text-center py-10 mb-20">
           <h4 className="font-bold text-lg italic text-orange-400 capitalize">

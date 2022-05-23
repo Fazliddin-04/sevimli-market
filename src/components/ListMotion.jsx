@@ -25,7 +25,7 @@ const item = {
 function ListMotion({ items }) {
   return (
     <motion.ul
-      className="w-full sm:w-[calc(50%-48px)] lg:w-[calc(33%-56px)] xl:w-[calc(25%-48px)] sm:mx-6 lg:mx-7 mb-14 sm:mb-0 sm:mt-16 xl:mx-6"
+      className="flex flex-wrap w-full gap-5"
       variants={container}
       initial="hidden"
       animate="visible"
@@ -37,7 +37,7 @@ function ListMotion({ items }) {
             off={'$30'}
             price={'$20'}
             title={data.name}
-            category={data.type}
+            category={data.category}
             imgUrl={data.imgUrl}
           />
         </motion.li>

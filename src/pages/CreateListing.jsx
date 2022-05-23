@@ -17,14 +17,16 @@ import { useTranslation } from 'react-i18next'
 function CreateListing() {
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
+  const [loading2, setLoading2] = useState(false)
   const [formData, setFormData] = useState({
     image: [],
     name: '',
     type: '',
+    category: '',
     userRef: '',
   })
 
-  const { image, name } = formData
+  const { image, name, category } = formData
 
   const auth = getAuth()
   const navigate = useNavigate()
@@ -76,7 +78,7 @@ function CreateListing() {
   const onSubmit = async (e) => {
     e.preventDefault()
 
-    setLoading(true)
+    setLoading2(true)
 
     if (image.length > 1) {
       setLoading(false)
@@ -128,7 +130,7 @@ function CreateListing() {
     const imgUrl = await Promise.all(
       [...image].map((image) => storeImage(image))
     ).catch((err) => {
-      setLoading(false)
+      setLoading2(false)
       toast.error('Suratlar yuklanmadi')
       return
     })
@@ -143,9 +145,13 @@ function CreateListing() {
 
     const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
     console.log(docRef)
-    setLoading(false)
+    setLoading2(false)
     toast.success("Ro'yxat saqlandi")
     navigate('/')
+  }
+
+  if (loading2) {
+    return <Spinner />
   }
 
   return (
@@ -311,6 +317,19 @@ function CreateListing() {
             onChange={onMutate}
             className="input bg-transparent input-error"
             placeholder={t('name-item')}
+            required
+          />
+          <label className="label">
+            <span>{t('category-item')}</span>
+          </label>
+          <input
+            type="text"
+            name="category"
+            id="category"
+            value={category}
+            onChange={onMutate}
+            className="input bg-transparent input-error"
+            placeholder={t('category-item')}
             required
           />
 
