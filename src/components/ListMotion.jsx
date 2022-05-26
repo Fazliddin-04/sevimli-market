@@ -25,7 +25,7 @@ const item = {
 function ListMotion({ items }) {
   return (
     <motion.ul
-      className="flex flex-wrap w-full gap-5"
+      className="flex flex-wrap justify-center w-full gap-5"
       variants={container}
       initial="hidden"
       animate="visible"
