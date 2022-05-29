@@ -18,7 +18,6 @@ function EditListing() {
   const [listing, setListing] = useState(null)
   const { t } = useTranslation()
   const [loading, setLoading] = useState(true)
-  const [loading2, setLoading2] = useState(false)
   const [formData, setFormData] = useState({
     image: [],
     name: '',
@@ -41,7 +40,6 @@ function EditListing() {
       const docSnap = await getDoc(docRef)
       if (docSnap.exists()) {
         setListing(docSnap.data())
-        console.log(docSnap.data())
         setFormData({ ...docSnap.data() })
         setLoading(false)
       } else {
@@ -108,7 +106,7 @@ function EditListing() {
   const onSubmit = async (e) => {
     e.preventDefault()
 
-    setLoading2(true)
+    setLoading(true)
 
     if (image.length > 1) {
       setLoading(false)
@@ -160,7 +158,7 @@ function EditListing() {
     const imgUrl = await Promise.all(
       [...image].map((image) => storeImage(image))
     ).catch(() => {
-      setLoading2(false)
+      setLoading(false)
       toast.error('Suratlar yuklanmadi')
       return
     })
@@ -176,18 +174,17 @@ function EditListing() {
     // Update Listing
     const docRef = doc(db, 'listings', params.listingId)
     await updateDoc(docRef, formDataCopy)
-    setLoading2(false)
+    setLoading(false)
     toast.success("Ro'yxat saqlandi")
     navigate(`/`)
   }
 
-  if (loading2) {
-    return <Spinner isShown={true} />
+  if (loading) {
+    return <Spinner isShown={null} />
   }
 
   return (
     <>
-      <Spinner isShown={loading} />
       {!loading && (
         <>
           <p className="text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold p-4 text-center">

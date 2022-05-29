@@ -45,7 +45,7 @@ function Navbar() {
   const { t } = useTranslation()
   return (
     <>
-      <div className="fixed w-screen py-3 xl:py-6 z-40 bg-white/30 backdrop-blur-md">
+      <div className="fixed w-screen py-3 xl:py-6 z-40 bg-white/30 dark:bg-black/30 backdrop-blur-md">
         <div className="container px-4 mx-auto flex align-center justify-between">
           <div
             className={` lg:hidden bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center flex-col gap-1 nav-toggle ${

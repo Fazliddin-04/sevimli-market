@@ -25,14 +25,14 @@ function Content() {
 
   return (
     <div
-      className={
+      className={`min-h-screen ${
         pathMatchRoute('/sign-up') ||
         pathMatchRoute('/sign-in') ||
         pathMatchRoute('/profile') ||
         pathMatchRoute('/forgot-password')
-          ? 'overflow-hidden relative z-[1] px-4 pt-32 pb-4 min-h-screen'
-          : `container mx-auto px-10 pt-32 pb-4`
-      }
+          ? 'overflow-hidden relative z-[1] px-4 pt-32 pb-4 '
+          : 'container mx-auto px-10 pt-32 pb-4'
+      }`}
     >
       <Routes>
         <Route path="/" element={<Home />} />

@@ -17,7 +17,6 @@ import { useTranslation } from 'react-i18next'
 function CreateListing() {
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
-  const [loading2, setLoading2] = useState(false)
   const [formData, setFormData] = useState({
     image: [],
     name: '',
@@ -78,7 +77,7 @@ function CreateListing() {
   const onSubmit = async (e) => {
     e.preventDefault()
 
-    setLoading2(true)
+    setLoading(true)
 
     if (image.length > 1) {
       setLoading(false)
@@ -130,7 +129,7 @@ function CreateListing() {
     const imgUrl = await Promise.all(
       [...image].map((image) => storeImage(image))
     ).catch((err) => {
-      setLoading2(false)
+      setLoading(false)
       toast.error('Suratlar yuklanmadi')
       return
     })
@@ -143,20 +142,18 @@ function CreateListing() {
 
     delete formDataCopy.image
 
-    const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
-    console.log(docRef)
-    setLoading2(false)
+    await addDoc(collection(db, 'listings'), formDataCopy)
+    setLoading(false)
     toast.success("Ro'yxat saqlandi")
     navigate('/')
   }
 
-  if (loading2) {
-    return <Spinner />
+  if (loading) {
+    return <Spinner isShown={null} />
   }
 
   return (
     <>
-      <Spinner isShown={loading} />
       <p className="text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold p-4 text-center">
         <span className="text-red-500">{t('create-title')}</span>
       </p>
@@ -210,6 +207,16 @@ function CreateListing() {
               value={'personal-hygiene'}
               id="type"
               data-title={t('personal-hygiene')}
+              className="btn rounded-none bg-transparent"
+              onClick={onMutate}
+              required
+            />
+            <input
+              type="radio"
+              name="type"
+              value={'parfumeria'}
+              id="type"
+              data-title={t('parfumeria')}
               className="btn rounded-none bg-transparent"
               onClick={onMutate}
               required
