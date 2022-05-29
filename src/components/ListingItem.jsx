@@ -1,14 +1,8 @@
-import { Link } from 'react-router-dom'
 import { FaRegTrashAlt, FaRegEdit } from 'react-icons/fa'
 
-function ListingItem({
-  listing,
-  id,
-  onEdit,
-  onDelete,
-}) {
+function ListingItem({ listing, id, onEdit, onDelete }) {
   return (
-    <div className="flex items-end flex-col my-5">
+    <div className="flex items-end flex-col my-5 w-full sm:w-auto">
       {onDelete && (
         <div className="flex items-center gap-5 text-center p-4 rounded-t-box border-b-0 border border-black dark:border-white">
           <div className="" onClick={() => onDelete(listing.id, listing.name)}>
@@ -21,18 +15,15 @@ function ListingItem({
           )}
         </div>
       )}
-      <Link
-        to={`/category/${listing.type}/${id}`}
-        className={`card card-bordered rounded-tr-none dark:border-white card-side h-40 transition hover:shadow-lg`}
-      >
-        <figure className="flex items-center justify-center">
+      <div className="card card-bordered w-full rounded-tr-none dark:border-white lg:card-side transition hover:shadow-lg">
+        <figure className="flex items-center justify-center h-48 p-2">
           <img
             src={listing.imgUrl}
             alt={listing.name}
             className="object-cover h-full"
           />
         </figure>
-        <div className={`card-body flex-1`}>
+        <div className="card-body flex-1">
           <h2 className="card-title flex-1 ">
             {listing.name.length > 30
               ? listing.name.slice(0, 30) + '...'
@@ -49,7 +40,7 @@ function ListingItem({
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   )
 }

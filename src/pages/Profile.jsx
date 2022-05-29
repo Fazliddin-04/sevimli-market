@@ -86,10 +86,8 @@ function Profile() {
   ]
 
   const onLogout = () => {
-    if (window.confirm('are you sure,')) {
-      auth.signOut()
-      navigate('/')
-    }
+    auth.signOut()
+    navigate('/')
   }
 
   const onDelete = async (listingId) => {
@@ -136,12 +134,27 @@ function Profile() {
   }, [])
   return (
     <>
+      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+      <div className="modal  modal-bottom sm:modal-middle">
+        <div className="modal-box bg-white dark:bg-slate-900">
+          <h3 className="font-bold text-lg">Siz tizimdan chiqmoqdasiz!</h3>
+          <p className="py-4">Buni xohlaganingizga ishonchingiz komilmi?</p>
+          <div className="modal-action">
+            <label htmlFor="my-modal-6" className="btn">
+              yo'q
+            </label>
+            <label htmlFor="my-modal-6" className="btn" onClick={onLogout}>
+              Ha
+            </label>
+          </div>
+        </div>
+      </div>
       <div className="flex justify-between">
         <div className="tabs">
           <div
             className={`${
               menuPersonal
-                ? 'tab-active text-red-400'
+                ? 'dark:bg-slate-700/50 tab-active'
                 : 'text-black dark:text-white'
             } tab tab-lg tab-lifted `}
             onClick={() => {
@@ -155,7 +168,7 @@ function Profile() {
           <div
             className={`${
               menuListings
-                ? 'tab-active text-red-400'
+                ? 'tab-active'
                 : 'text-black dark:text-white'
             } tab tab-lg tab-lifted`}
             onClick={() => {
@@ -169,7 +182,7 @@ function Profile() {
           <div
             className={`${
               menuBlog
-                ? 'tab-active text-red-400'
+                ? 'tab-active'
                 : 'text-black dark:text-white'
             } tab tab-lg tab-lifted`}
             onClick={() => {
@@ -182,7 +195,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <ul className="p-4 mb-10 shadow-lg bg-slate-100 dark:bg-slate-900 backdrop-blur-lg rounded-xl w-full h-full">
+      <ul className="p-4 mb-10 shadow-lg bg-slate-200 dark:bg-slate-700/50 backdrop-blur-lg rounded-xl rounded-tl-none w-full h-full">
         <div className={`${menuPersonal ? 'block' : 'hidden'}`}>
           <div className={`background--custom profile rounded-2xl`}>
             <canvas id="canvas"></canvas>
@@ -245,14 +258,13 @@ function Profile() {
               onChange={onChange}
             />
           </form>
-          <button
-            className="btn btn-error gap-3 text-lg mt-10 ml-auto"
-            type="button"
-            onClick={onLogout}
+          <label
+            htmlFor="my-modal-6"
+            className="btn btn-error modal-button gap-3 text-lg mt-10 ml-auto"
           >
             {t('log_out')}
             <FaSignOutAlt />
-          </button>
+          </label>
         </div>
         <div
           className={`max-h-90 overflow-y-auto ${

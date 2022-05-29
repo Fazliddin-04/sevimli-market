@@ -17,11 +17,11 @@ function Footer() {
           Sevimli
         </Link>
         <p>
-          &copy; {year} - {t('All-rights-reserved')} 
+          &copy; {year} - {t('All-rights-reserved')}
         </p>
         <div className="flex gap-4 mt-4">
           <a
-            href="#!"
+            href="https://t.me/sevimlisupermarketiSHURCHI"
             target="_blank"
             rel="noreferrer"
             className="w-14 h-14 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-2xl"
