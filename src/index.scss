@@ -20,10 +20,17 @@ body {
 }
 
 .title {
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1.5;
   font-weight: 700;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 640px) {
+    font-size: 32px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 36px;
+    line-height: 1.4;
+  }
+  @media screen and (min-width: 1280px) {
     font-size: 40px;
     line-height: 1.4;
   }
@@ -95,13 +102,19 @@ canvas#canvas {
 /* btn-primary: text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl */
 
 section.intro {
-  height: 550px;
-  // @media screen and (min-width: 768px) {
-  //   height: 600px;
-  // }
-  // @media screen and (min-width: 1024px) {
-  //   height: 550px;
-  // }
+  height: 280px;
+  &#home {
+    @media screen and (min-width: 480px) and (max-width: 640px) {
+      height: 450px;
+      margin-top: 250px;
+    }
+  }
+  @media screen and (min-width: 640px) {
+    height: 450px;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 550px;
+  }
 }
 
 .swiper-slide-active {
@@ -127,13 +140,13 @@ section.intro {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 640px) {
   @keyframes zoomIn {
     0% {
-      background-size: 130%;
+      background-size: 120%;
     }
     100% {
-      background-size: 140%;
+      background-size: 130%;
     }
   }
 }
@@ -200,9 +213,12 @@ section.intro {
     background-color: #ff0000 !important;
     opacity: 1 !important;
     &-active {
-      background-color: #000000 !important;
+      background-color: #fff !important;
       border: 2px solid #ff0000;
       transform: scale(1.2);
+    }
+    .dark &-active {
+      background-color: #000000 !important;
     }
   }
 }
@@ -212,8 +228,11 @@ section.intro {
     overflow-y: visible;
   }
   .swiper-slide {
-    height: 128px !important;
+    height: 100px !important;
     overflow: visible !important;
+    @media screen and (min-width: 768px) {
+      height: 128px !important;
+    }
   }
 }
 

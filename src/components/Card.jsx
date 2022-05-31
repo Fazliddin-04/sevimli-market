@@ -1,11 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-function Card({ off, price, title, category, imgUrl, badgeColor }) {
+function Card({ off, price, title, category, imgUrl }) {
   const { t } = useTranslation()
   return (
-    <div className="min-h-[400px] w-72">
-      <div className="flex justify-center overflow-hidden bg-slate-100 rounded-3xl h-64 mb-8">
+    <div className="w-72">
+      <div className="flex justify-center overflow-hidden bg-slate-100 rounded-3xl h-40 p-2 lg:h-64 mb-4 lg:mb-8">
         <img
           src={imgUrl}
           alt=""
@@ -14,12 +14,12 @@ function Card({ off, price, title, category, imgUrl, badgeColor }) {
           loading="lazy"
         />
       </div>
-      <h3 className="text-2xl font-semibold mb-4">{t(title)}</h3>
-      <div className="flex items-center gap-6">
+      <h3 className="text-2xl text-center sm:text-left font-semibold mb-2 lg:mb-4">
+        {t(title)}
+      </h3>
+      <div className="flex justify-center sm:justify-start items-center gap-6">
         <div
-          className={`uppercase font-bold ${badgeColor && 'text-pink-500'} ${
-            badgeColor && 'bg-pink-600/30'
-          } px-4 h-10 flex items-center justify-center rounded-full`}
+          className={`uppercase font-bold text-sm text-pink-500 bg-pink-600/30 px-4 h-10 flex items-center justify-center rounded-full`}
         >
           {t(category)}
         </div>
