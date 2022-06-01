@@ -468,3 +468,22 @@ section.intro {
     opacity: 0;
   }
 }
+
+.listMotion {
+  li &-card &-card__category {
+    color: #ffc123;
+    background: rgba(255, 193, 35, 0.1);
+  }
+  li:nth-child(2n) &-card &-card__category {
+    color: #2975ff;
+    background: rgba(41, 117, 255, 0.1);
+  }
+  li:nth-child(3n) &-card &-card__category {
+    color: #ff66a0;
+    background: rgba(255, 102, 160, 0.1);
+  }
+  li:nth-child(4n) &-card &-card__category {
+    color: #00cc96;
+    background: rgba(0, 204, 150, 0.1);
+  }
+}

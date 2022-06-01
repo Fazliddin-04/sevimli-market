@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 function Card({ off, price, title, category, imgUrl }) {
   const { t } = useTranslation()
   return (
-    <div className="w-72">
+    <div className="w-72 listMotion-card">
       <div className="flex justify-center overflow-hidden bg-slate-100 rounded-3xl h-40 p-2 lg:h-64 mb-4 lg:mb-8">
         <img
           src={imgUrl}
@@ -19,7 +19,7 @@ function Card({ off, price, title, category, imgUrl }) {
       </h3>
       <div className="flex justify-center sm:justify-start items-center gap-6">
         <div
-          className={`uppercase font-bold text-sm text-pink-500 bg-pink-600/30 px-4 h-10 flex items-center justify-center rounded-full`}
+          className={`listMotion-card__category uppercase font-bold text-sm px-4 h-10 flex items-center justify-center rounded-full`}
         >
           {t(category)}
         </div>

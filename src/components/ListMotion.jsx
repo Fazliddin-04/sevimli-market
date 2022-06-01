@@ -25,7 +25,7 @@ const item = {
 function ListMotion({ items }) {
   return (
     <motion.ul
-      className="flex flex-wrap justify-center w-full gap-5"
+      className="flex flex-wrap justify-center w-full gap-5 listMotion"
       variants={container}
       initial="hidden"
       animate="visible"
@@ -33,9 +33,6 @@ function ListMotion({ items }) {
       {items.map(({ id, data }) => (
         <motion.li key={id} className="item" variants={item}>
           <Card
-            badgeColor="lime"
-            off={'$30'}
-            price={'$20'}
             title={data.name}
             category={data.category}
             imgUrl={data.imgUrl}
