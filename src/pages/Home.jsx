@@ -35,7 +35,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
-import { EffectFade, Autoplay, Pagination } from 'swiper'
+import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper'
 // import Card from '../components/Card'
 import ListMotion from '../components/ListMotion'
 import Spinner from '../components/Spinner'
@@ -87,6 +87,7 @@ function Home() {
     { icon: <FaVolleyballBall size={32} />, label: 'sport' },
   ])
   const [listings, setListings] = useState(null)
+  const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
   const [selectedTab, setSelectedTab] = useState(tabs[0])
   const [lastFetchedListing, setLastFetchedListing] = useState(null)
@@ -132,8 +133,39 @@ function Home() {
     fetchListings()
   }, [selectedTab])
 
-  // Pagination / Load More
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true)
+      try {
+        // Get referense
+        const postsRef = collection(db, 'posts')
 
+        // create a query
+        const q = query(postsRef, orderBy('timestamp', 'desc'), limit(7))
+
+        // Execute query
+        const querySnap = await getDocs(q)
+
+        const posts = []
+
+        querySnap.forEach((doc) => {
+          return posts.push({
+            id: doc.id,
+            data: doc.data(),
+          })
+        })
+
+        setPosts(posts)
+        setLoading(false)
+      } catch (error) {
+        toast.error("Postlarni olib kelib bo'lmadi")
+      }
+    }
+    fetchPosts()
+  }, [])
+
+  
+  // Pagination / Load More
   // eslint-disable-next-line no-unused-vars
   const onFetchMoreListings = async () => {
     try {
@@ -170,10 +202,15 @@ function Home() {
     }
   }
 
+
+
   return (
     <>
       <Spinner isShown={loading} />
-      <section id='home' className="bg-slate-200 dark:bg-slate-700/50 rounded-3xl flex items-center flex-wrap sm:flex-nowrap md:overflow-hidden relative intro mt-64 md:mt-0">
+      <section
+        id="home"
+        className="bg-slate-200 dark:bg-slate-700/50 rounded-3xl flex items-center flex-wrap sm:flex-nowrap md:overflow-hidden relative intro mt-64 md:mt-0"
+      >
         <div className="flex-initial sm:px-10 md:pl-14 md:w-full absolute md:static left-0 -top-[310px] sm:-top-80">
           <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize">
             - {t('popular_products')}
@@ -206,10 +243,10 @@ function Home() {
         </Swiper>
       </section>
       <section id="catalog" className="pt-20 lg:pt-36 pb-20">
-        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize">
+        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
           - {t('categories')}
         </h4>
-        <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full">
+        <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left">
           {t('browse_by_category')}
         </h2>
         <Swiper
@@ -395,6 +432,27 @@ function Home() {
             </div>
           </SwiperSlide>
         </Swiper>
+      </section>
+      <section id="blog" className="pt-20 lg:pt-36 pb-20">
+        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
+          - Bizning Blog
+        </h4>
+        <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left">
+          Blogimizni tekshirib ko'ring
+        </h2>
+        {window.innerWidth < 768 ? (
+          <Swiper
+            slidesPerView={1}
+            modules={[Autoplay, Navigation]}
+            autoplay={{ delay: 4000, disableOnInteraction: true }}
+            className="mySwiper"
+          ></Swiper>
+        ) : (
+          <AnimatePresence exitBeforeEnter>
+            {!loading &&
+              (posts ? <ListMotion items={posts} blog={true} /> : <p>No listings</p>)}
+          </AnimatePresence>
+        )}
       </section>
     </>
   )

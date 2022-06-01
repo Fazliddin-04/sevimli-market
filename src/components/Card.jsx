@@ -1,16 +1,20 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
-function Card({ off, price, title, category, imgUrl }) {
+function Card({ off, price, title, category, imgUrl, linked, id }) {
   const { t } = useTranslation()
   return (
-    <div className="w-72 listMotion-card">
-      <div className="flex justify-center overflow-hidden bg-slate-100 rounded-3xl h-40 p-2 lg:h-64 mb-4 lg:mb-8">
+    <Link
+      to={linked ? `/blog/${id}` : '/'}
+      className="w-64 listMotion-card block"
+    >
+      <div className="listMotion-card__frame flex justify-center overflow-hidden bg-slate-100 rounded-3xl p-2 h-64 mb-4 lg:mb-8">
         <img
-          src={imgUrl}
+          src={imgUrl[0]}
           alt=""
-          width="90%"
-          className="object-contain"
+          width="100%"
+          className="object-cover"
           loading="lazy"
         />
       </div>
@@ -32,7 +36,7 @@ function Card({ off, price, title, category, imgUrl }) {
           {price}
         </h3> */}
       </div>
-    </div>
+    </Link>
   )
 }
 

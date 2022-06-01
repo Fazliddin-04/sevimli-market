@@ -199,16 +199,6 @@ section.intro {
 }
 
 .swiper-pagination {
-  bottom: 5% !important;
-  @media screen and (min-width: 514px) {
-    bottom: 10% !important;
-  }
-  @media screen and (min-width: 768px) {
-    text-align: start !important;
-  }
-  @media screen and (min-width: 1024px) {
-    bottom: 20% !important;
-  }
   &-bullet {
     background-color: #ff0000 !important;
     opacity: 1 !important;
@@ -219,6 +209,18 @@ section.intro {
     }
     .dark &-active {
       background-color: #000000 !important;
+    }
+  }
+  #testimonials & {
+    bottom: 5% !important;
+    @media screen and (min-width: 514px) {
+      bottom: 10% !important;
+    }
+    @media screen and (min-width: 768px) {
+      text-align: start !important;
+    }
+    @media screen and (min-width: 1024px) {
+      bottom: 20% !important;
     }
   }
 }
@@ -470,6 +472,7 @@ section.intro {
 }
 
 .listMotion {
+  gap: 72px 48px;
   li &-card &-card__category {
     color: #ffc123;
     background: rgba(255, 193, 35, 0.1);
@@ -485,5 +488,78 @@ section.intro {
   li:nth-child(4n) &-card &-card__category {
     color: #00cc96;
     background: rgba(0, 204, 150, 0.1);
+  }
+}
+#blog {
+  .listMotion {
+    display: grid;
+    grid-template-areas:
+      'a a b'
+      'c d e'
+      'f g g';
+    li {
+      // width: 320px;
+      &:nth-child(1) {
+        grid-area: a;
+      }
+      &:nth-child(2) {
+        grid-area: b;
+      }
+      &:nth-child(3) {
+        grid-area: c;
+      }
+      &:nth-child(4) {
+        grid-area: d;
+      }
+      &:nth-child(5) {
+        grid-area: e;
+      }
+      &:nth-child(6) {
+        grid-area: f;
+      }
+      &:nth-child(7) {
+        grid-area: g;
+      }
+    }
+    &-card {
+      width: 100%;
+      &__frame {
+        height: 375px;
+        margin-bottom: 40px;
+        padding: 0;
+        @media screen and (min-width: 768px) {
+          margin-bottom: 32px;
+        }
+      }
+      h3 {
+        font-size: 24px;
+        line-height: 1.5;
+        margin-bottom: 16px;
+        @media screen and (min-width: 768px) {
+          font-size: 32px;
+          margin-bottom: 24px;
+        }
+      }
+      &__category {
+        padding: 0 16px;
+        font-size: 14px;
+        @media screen and (min-width: 768px) {
+          padding: 0 24px;
+          font-size: 16px;
+        }
+      }
+    }
+    // li:nth-child(2n) &-card {
+    //   color: #2975ff;
+    //   background: rgba(41, 117, 255, 0.1);
+    // }
+    // li:nth-child(3n) &-card {
+    //   color: #ff66a0;
+    //   background: rgba(255, 102, 160, 0.1);
+    // }
+    // li:nth-child(4n) &-card {
+    //   color: #00cc96;
+    //   background: rgba(0, 204, 150, 0.1);
+    // }
   }
 }

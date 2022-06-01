@@ -10,7 +10,7 @@ function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <div className="container px-10 mx-auto mt-28 pb-16 flex flex-wrap sm:justify-around gap-14">
+    <div className="container px-10 xl:px-40 mx-auto mt-28 pb-16 flex flex-wrap justify-between gap-14">
       <div className="max-w-max flex flex-col gap-4">
         <Link to="/" className="font-bold text-3xl flex items-center gap-2">
           <img src={cart} alt="cart" width={50} />

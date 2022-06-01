@@ -26,6 +26,7 @@ function Profile() {
   const [changeDetails, setChangeDetails] = useState(false)
   const [loading, setLoading] = useState(true)
   const [listings, setListings] = useState(null)
+  const [posts, setPosts] = useState(null)
 
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -70,6 +71,34 @@ function Profile() {
     fetchUserListings()
   }, [auth.currentUser.uid])
 
+  useEffect(() => {
+    const fetchUserPosts = async () => {
+      const postsRef = collection(db, 'posts')
+
+      const q = query(
+        postsRef,
+        where('userRef', '==', auth.currentUser.uid),
+        orderBy('timestamp', 'desc')
+      )
+
+      const querySnap = await getDocs(q)
+
+      let posts = []
+
+      querySnap.forEach((doc) => {
+        posts.push({
+          id: doc.id,
+          data: doc.data(),
+        })
+      })
+
+      setPosts(posts)
+      setLoading(false)
+    }
+
+    fetchUserPosts()
+  }, [auth.currentUser.uid, menuBlog])
+
   const months = [
     'January',
     'February',
@@ -90,7 +119,7 @@ function Profile() {
     navigate('/')
   }
 
-  const onDelete = async (listingId) => {
+  const onDeleteListing = async (listingId) => {
     if (window.confirm("O'chirishni xohlaganingizga ishonchingiz komilmi?")) {
       await deleteDoc(doc(db, 'listings', listingId))
       const updatedListings = listings.filter(
@@ -100,8 +129,18 @@ function Profile() {
       toast.success("Ro'yxat muvaffaqiyatli o'chirildi")
     }
   }
+  const onDeletePost = async (postId) => {
+    if (window.confirm("O'chirishni xohlaganingizga ishonchingiz komilmi?")) {
+      await deleteDoc(doc(db, 'posts', postId))
+      const updatedPosts = posts.filter((post) => post.id !== postId)
+      setListings(updatedPosts)
+      toast.success("Ro'yxat muvaffaqiyatli o'chirildi")
+    }
+  }
 
-  const onEdit = (listingId) => navigate(`/edit-listing/${listingId}`)
+  const onEditListing = (listingId) => navigate(`/edit-listing/${listingId}`)
+
+  const onEditPost = (postId) => navigate(`/edit-post/${postId}`)
 
   const onSubmit = async () => {
     try {
@@ -167,9 +206,7 @@ function Profile() {
           </div>
           <div
             className={`${
-              menuListings
-                ? 'tab-active'
-                : 'text-black dark:text-white'
+              menuListings ? 'tab-active' : 'text-black dark:text-white'
             } tab tab-lg tab-lifted`}
             onClick={() => {
               setMenuListings(true)
@@ -181,9 +218,7 @@ function Profile() {
           </div>
           <div
             className={`${
-              menuBlog
-                ? 'tab-active'
-                : 'text-black dark:text-white'
+              menuBlog ? 'tab-active' : 'text-black dark:text-white'
             } tab tab-lg tab-lifted`}
             onClick={() => {
               setMenuBlog(true)
@@ -239,7 +274,7 @@ function Profile() {
             <input
               type="text"
               placeholder="username"
-              className="input input-ghost text-white"
+              className="input input-bordered bg-transparent"
               value={name}
               id="name"
               disabled={!changeDetails ? 'disabled' : ''}
@@ -251,7 +286,7 @@ function Profile() {
             <input
               type="email"
               placeholder="Email"
-              className="input input-ghost text-white"
+              className="input input-bordered bg-transparent"
               id="email"
               value={email}
               disabled={!changeDetails ? 'disabled' : ''}
@@ -285,14 +320,54 @@ function Profile() {
                 </Link>
               </div>
               <ul className="flex flex-wrap justify-center items-center gap-x-9">
-                {listings.map((listing) => (
-                  <ListingItem
-                    key={listing.id}
-                    listing={listing.data}
-                    id={listing.id}
-                    onDelete={() => onDelete(listing.id)}
-                    onEdit={() => onEdit(listing.id)}
-                  />
+                {listings.map(({ id, data }) => (
+                  <li key={id}>
+                    <ListingItem
+                      id={id}
+                      title={data.name}
+                      category={data.type}
+                      timestamp={data.timestamp}
+                      imgUrl={data.imgUrl}
+                      onDelete={() => onDeleteListing(id)}
+                      onEdit={() => onEditListing(id)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div
+          className={`max-h-90 overflow-y-auto ${
+            menuBlog ? 'block' : 'hidden'
+          }`}
+        >
+          {!loading && posts?.length > 0 && (
+            <div className="p-4 sm:p-0">
+              <div>
+                <Link
+                  to="/create-post"
+                  className="btn bg-red-700 text-white mt-5"
+                >
+                  <span className="mr-2">
+                    <FaPlus />
+                  </span>
+                  {t('add')}
+                </Link>
+              </div>
+              <ul className="flex flex-col justify-center items-center gap-x-9">
+                {posts.map(({ id, data }) => (
+                  <li key={id}>
+                    <ListingItem
+                      id={id}
+                      title={data.title}
+                      category={data.category}
+                      timestamp={data.timestamp}
+                      imgUrl={data.imgUrls}
+                      onDelete={() => onDeletePost(id)}
+                      onEdit={() => onEditPost(id)}
+                    />
+                  </li>
                 ))}
               </ul>
             </div>

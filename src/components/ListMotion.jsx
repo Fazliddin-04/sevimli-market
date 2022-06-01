@@ -22,10 +22,10 @@ const item = {
   },
 }
 
-function ListMotion({ items }) {
+function ListMotion({ items, blog }) {
   return (
     <motion.ul
-      className="flex flex-wrap justify-center w-full gap-5 listMotion"
+      className="flex flex-wrap justify-center w-full listMotion"
       variants={container}
       initial="hidden"
       animate="visible"
@@ -33,9 +33,11 @@ function ListMotion({ items }) {
       {items.map(({ id, data }) => (
         <motion.li key={id} className="item" variants={item}>
           <Card
-            title={data.name}
+            id={id}
+            title={data.name || data.title}
             category={data.category}
-            imgUrl={data.imgUrl}
+            imgUrl={data.imgUrl || data.imgUrls}
+            linked={blog}
           />
         </motion.li>
       ))}
