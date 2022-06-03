@@ -5,12 +5,11 @@ import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
 
-import SwiperCore, { Navigation, Pagination, Zoom } from 'swiper'
+import SwiperCore, { Autoplay, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-SwiperCore.use([Zoom, Navigation, Pagination])
+SwiperCore.use([Autoplay, Pagination])
 
 function SinglePost() {
   const [post, setPost] = useState(null)
@@ -33,40 +32,14 @@ function SinglePost() {
     fetchPost()
   }, [navigate, params.postId])
 
-  const months = [
-    'Yanvar',
-    'Fevral',
-    'Mart',
-    'Aprel',
-    'May',
-    'Iyun',
-    'Iyul',
-    'Avgust',
-    'Sentabr',
-    'Oktabr',
-    'Noyabr',
-    'Dekabr',
-  ]
-
-  let year
-  let month
-  let day
-
-  if (!loading) {
-    let date = new Date(post.timestamp.seconds * 1000)
-    year = date.getFullYear()
-    month = date.getMonth()
-    day = date.getDate()
-  }
-
   if (loading) {
-    return <Spinner />
+    return <Spinner isShown={null} />
   }
 
   return (
     <>
       <div className="text-sm breadcrumbs px-5">
-        <ul className="flex flex-wrap">
+        <ul className="flex flex-wrap text-xl">
           <li>
             <Link to="/">Bosh sahifa</Link>
           </li>
@@ -75,34 +48,37 @@ function SinglePost() {
               Blog
             </Link>
           </li>
-          <li>{post.title}</li>
+          <li className="font-medium">{post.title}</li>
         </ul>
       </div>
-      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold ">
-        {post.title}
-      </h2>
-      <div className="divider"></div>
-      <p className="md:text-xl">{post.text}</p>
+      <div className="my-10">
+        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
+          - {post.category}
+        </h4>
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mt-5">
+          {post.title}
+        </h2>
+      </div>
       <Swiper
-        slidesPerView={1}
-        navigation={true}
+        modules={[Autoplay]}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        className="w-max lg:w-1/2"
+        className="my-20 h-[600px] rounded-3xl"
         loop={true}
-        style={{
-          '--swiper-navigation-color':
-            'hsla(var(--p) / var(--tw-bg-opacity, 1))',
-          '--swiper-pagination-color': '#fff',
-        }}
       >
         {post.imgUrls.map((url, index) => (
           <SwiperSlide key={index}>
-            <div className="swiper-zoom-container h-full w-full relative">
-              <img src={`${url}`} alt="pic" />
+            <div className="h-full">
+              <img
+                src={`${url}`}
+                alt="pic"
+                className="h-full w-full object-cover"
+              />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+      <p className="md:text-xl">{post.text}</p>
     </>
   )
 }

@@ -164,7 +164,6 @@ function Home() {
     fetchPosts()
   }, [])
 
-  
   // Pagination / Load More
   // eslint-disable-next-line no-unused-vars
   const onFetchMoreListings = async () => {
@@ -201,8 +200,6 @@ function Home() {
       toast.error("Ro'yhatlarni olib kelib bo'lmadi")
     }
   }
-
-
 
   return (
     <>
@@ -435,10 +432,10 @@ function Home() {
       </section>
       <section id="blog" className="pt-20 lg:pt-36 pb-20">
         <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
-          - Bizning Blog
+          - {t('our_blog')}
         </h4>
         <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left">
-          Blogimizni tekshirib ko'ring
+          {t('check_out_our_blog')}
         </h2>
         {window.innerWidth < 768 ? (
           <Swiper
@@ -450,7 +447,11 @@ function Home() {
         ) : (
           <AnimatePresence exitBeforeEnter>
             {!loading &&
-              (posts ? <ListMotion items={posts} blog={true} /> : <p>No listings</p>)}
+              (posts ? (
+                <ListMotion items={posts} blog={true} />
+              ) : (
+                <p>No listings</p>
+              ))}
           </AnimatePresence>
         )}
       </section>

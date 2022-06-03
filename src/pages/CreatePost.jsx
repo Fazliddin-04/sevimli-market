@@ -73,7 +73,7 @@ function CreatePost() {
 
     if (images.length > 5) {
       setLoading(false)
-      toast.error('Max 5 rasm')
+      toast.error(t('max-pic') + ' 5')
       return
     }
 
@@ -120,9 +120,9 @@ function CreatePost() {
 
     const imgUrls = await Promise.all(
       [...images].map((image) => storeImage(image))
-    ).catch((err) => {
+    ).catch(() => {
       setLoading(false)
-      toast.error('Suratlar yuklanmadi')
+      toast.error(t('pictures_not_uploaded'))
       return
     })
 
@@ -136,7 +136,7 @@ function CreatePost() {
 
     await addDoc(collection(db, 'posts'), formDataCopy)
     setLoading(false)
-    toast.success("Ro'yxat saqlandi")
+    toast.success(t('created'))
     navigate('/')
   }
 
@@ -147,13 +147,13 @@ function CreatePost() {
   return (
     <>
       <p className="text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold p-4 text-center">
-        <span className="text-red-500">Post yaratish</span>
+        <span className="text-red-500">{t('create-post')}</span>
       </p>
 
       <div className="mx-auto bg-slate-100 dark:bg-slate-800 rounded-xl shadow-lg p-5 w-11/12 sm:w-9/12 sm:p-10">
         <form onSubmit={onSubmit} className="form-control">
           <label className="label">
-            <span>Sarlavha</span>
+            <span>{t('title')}</span>
           </label>
           <input
             type="text"
@@ -165,7 +165,7 @@ function CreatePost() {
             required
           />
           <label className="label">
-            <span>Post turi</span>
+            <span>{t('type')}</span>
           </label>
           <input
             type="text"
@@ -174,11 +174,11 @@ function CreatePost() {
             value={category}
             onChange={onMutate}
             className="input bg-transparent input-error mb-4"
-            placeholder="Misol: Aksiya, Yangi filial, Bestsellerlar ..."
+            placeholder={t('type-placeholder')}
             required
           />
           <label className="label">
-            <span>Matn</span>
+            <span>{t('text')}</span>
           </label>
           <textarea
             name="text"
@@ -213,7 +213,7 @@ function CreatePost() {
                   d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
               </svg>
-              <label>Max 5 surat</label>
+              <label>{t('max-pic')} 5</label>
             </div>
           </div>
           <div className="mt-10 flex items-center gap-5">

@@ -81,7 +81,7 @@ function CreateListing() {
 
     if (image.length > 1) {
       setLoading(false)
-      toast.error('Max 1 rasm')
+     toast.error(t('max-pic') + ' 1')
       return
     }
 
@@ -130,7 +130,7 @@ function CreateListing() {
       [...image].map((image) => storeImage(image))
     ).catch((err) => {
       setLoading(false)
-      toast.error('Suratlar yuklanmadi')
+      toast.error(t('pictures_not_uploaded'))
       return
     })
 
@@ -144,7 +144,7 @@ function CreateListing() {
 
     await addDoc(collection(db, 'listings'), formDataCopy)
     setLoading(false)
-    toast.success("Ro'yxat saqlandi")
+    toast.success(t('created'))
     navigate('/')
   }
 
@@ -327,7 +327,7 @@ function CreateListing() {
             required
           />
           <label className="label">
-            <span>{t('category-item')}</span>
+            <span>{t('type')}</span>
           </label>
           <input
             type="text"
@@ -336,7 +336,7 @@ function CreateListing() {
             value={category}
             onChange={onMutate}
             className="input bg-transparent input-error"
-            placeholder={t('category-item')}
+            placeholder={t('type')}
             required
           />
 
@@ -350,7 +350,7 @@ function CreateListing() {
             accept=".jpg,.png,.jpeg"
             required
           />
-          <div className="alert alert-error border-error border rounded-t-none">
+          <div className="alert alert-info opacity-90 rounded-t-none">
             <div className="flex-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -365,7 +365,7 @@ function CreateListing() {
                   d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
               </svg>
-              <label>Max 1 surat</label>
+              <label> {t('max-pic')} 1</label>
             </div>
           </div>
           <div className="mt-10 flex items-center gap-5">

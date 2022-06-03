@@ -355,7 +355,7 @@ function Profile() {
                   {t('add')}
                 </Link>
               </div>
-              <ul className="flex flex-col justify-center items-center gap-x-9">
+              <ul className="flex flex-wrap justify-center items-center gap-x-9">
                 {posts.map(({ id, data }) => (
                   <li key={id}>
                     <ListingItem

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import {
   collection,
   getDocs,
@@ -9,6 +10,9 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
+import { AnimatePresence } from 'framer-motion'
+import ListMotion from '../components/ListMotion'
+import Spinner from '../components/Spinner'
 
 function Blog() {
   const [posts, setPosts] = useState(null)
@@ -83,7 +87,39 @@ function Blog() {
       toast.error("Postlarni olib kelib bo'lmadi")
     }
   }
-  return <div>Blog</div>
+
+  if (loading) {
+    return <Spinner isShown={null} />
+  }
+
+  return (
+    <div id="blog">
+      <div className="text-sm breadcrumbs px-5">
+        <ul className="flex flex-wrap text-xl">
+          <li>
+            <Link to="/">Bosh sahifa</Link>
+          </li>
+          <li className="font-medium">Blog</li>
+        </ul>
+      </div>
+      <div className="my-10">
+        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
+          - expolore blog
+        </h4>
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mt-5">
+          Blog
+        </h2>
+      </div>
+      <AnimatePresence exitBeforeEnter>
+        {!loading &&
+          (posts ? (
+            <ListMotion items={posts} blog={true} />
+          ) : (
+            <p>No listings</p>
+          ))}
+      </AnimatePresence>
+    </div>
+  )
 }
 
 export default Blog
