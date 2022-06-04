@@ -35,11 +35,13 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper'
-// import Card from '../components/Card'
+import Card from '../components/Card'
 import ListMotion from '../components/ListMotion'
 import Spinner from '../components/Spinner'
 import FeatureCard from '../components/FeatureCard'
+import { Link } from 'react-router-dom'
 const imgList = [
   'https://images.unsplash.com/photo-1652208785003-4100305584a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80',
   'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
@@ -440,10 +442,27 @@ function Home() {
         {window.innerWidth < 768 ? (
           <Swiper
             slidesPerView={1}
-            modules={[Autoplay, Navigation]}
-            autoplay={{ delay: 4000, disableOnInteraction: true }}
+            spaceBetween={30}
+            navigation={true}
+            modules={[Navigation]}
             className="mySwiper"
-          ></Swiper>
+          >
+            {!loading && posts ? (
+              posts.map(({ id, data }) => (
+                <SwiperSlide key={id}>
+                  <Card
+                    id={id}
+                    title={data.title}
+                    category={data.category}
+                    imgUrl={data.imgUrls}
+                    linked={true}
+                  />
+                </SwiperSlide>
+              ))
+            ) : (
+              <p>No listings</p>
+            )}
+          </Swiper>
         ) : (
           <AnimatePresence exitBeforeEnter>
             {!loading &&
@@ -454,6 +473,12 @@ function Home() {
               ))}
           </AnimatePresence>
         )}
+        <Link
+          to="/blog"
+          className="block mt-16 mx-auto w-fit text-xs lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
+        >
+          {t('view_more')}
+        </Link>
       </section>
     </>
   )
