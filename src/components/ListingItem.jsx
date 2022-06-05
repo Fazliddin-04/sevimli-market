@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { FaRegTrashAlt, FaRegEdit } from 'react-icons/fa'
 
 function ListingItem({
@@ -9,6 +10,7 @@ function ListingItem({
   onEdit,
   onDelete,
 }) {
+  const { t } = useTranslation()
   return (
     <div className="flex items-end flex-col my-5 w-full sm:w-auto">
       {onDelete && (
@@ -29,15 +31,15 @@ function ListingItem({
         </figure>
         <div className="card-body flex-1">
           <h2 className="card-title flex-1 ">
-            {title.length > 50 ? title.slice(0, 30) + '...' : title}
+            {t(title).length > 50 ? t(title).slice(0, 30) + '...' : t(title)}
             {new Date(timestamp.seconds * 1000).toLocaleDateString('en') ===
               new Date().toLocaleDateString('en') && (
-              <div className="badge mx-2 badge-secondary uppercase">yangi</div>
+              <div className="badge mx-2 badge-secondary uppercase">{t('new')}</div>
             )}
           </h2>
           <div className="card-actions">
-            <div className="badge bg-red-600 text-white capitalize p-3">
-              {category.replace(/-/g, ' ')}
+            <div className="badge bg-red-600 text-white capitalize p-4 text-md">
+              {t(category).replace(/-/g, ' ')}
             </div>
           </div>
         </div>

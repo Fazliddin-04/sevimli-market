@@ -13,11 +13,14 @@ import { toast } from 'react-toastify'
 import { AnimatePresence } from 'framer-motion'
 import ListMotion from '../components/ListMotion'
 import Spinner from '../components/Spinner'
+import { useTranslation } from 'react-i18next'
 
 function Blog() {
   const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lastFetchedPost, setLastFetchedPost] = useState(null)
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -104,10 +107,10 @@ function Blog() {
       </div>
       <div className="my-10">
         <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
-          - expolore blog
+          - {t('our_blog')}
         </h4>
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mt-5">
-          Blog
+        <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left">
+          {t('check_out_our_blog')}
         </h2>
       </div>
       <AnimatePresence exitBeforeEnter>

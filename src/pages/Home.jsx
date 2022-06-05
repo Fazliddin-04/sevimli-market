@@ -477,7 +477,7 @@ function Home() {
           to="/blog"
           className="block mt-16 mx-auto w-fit text-xs lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
         >
-          {t('view_more')}
+          {t('view_all')}
         </Link>
       </section>
     </>
