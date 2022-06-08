@@ -33,19 +33,19 @@ function Content() {
 
   return (
     <div
-      className={`min-h-screen ${
+      className={`min-h-screen pt-32 pb-4 ${
         pathMatchRoute('/sign-up') ||
         pathMatchRoute('/sign-in') ||
         pathMatchRoute('/profile') ||
         pathMatchRoute('/forgot-password')
-          ? 'overflow-hidden relative z-[1] px-4 pt-32 pb-4 '
-          : 'container mx-auto px-10 pt-32 pb-4'
+          ? 'overflow-hidden relative z-[1] px-4'
+          : 'container mx-auto px-10'
       }`}
     >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/career" element={<Careers />} />
+        <Route path="/careers" element={<Careers />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:postId" element={<SinglePost />} />
         <Route path="/category/:categoryName" element={<Category />} />

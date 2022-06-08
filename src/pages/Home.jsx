@@ -28,6 +28,7 @@ import {
   FaRegUser,
   FaRegStar,
   FaAirFreshener,
+  FaTelegram,
 } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -42,6 +43,8 @@ import ListMotion from '../components/ListMotion'
 import Spinner from '../components/Spinner'
 import FeatureCard from '../components/FeatureCard'
 import { Link } from 'react-router-dom'
+import cookies from 'js-cookie'
+
 const imgList = [
   'https://images.unsplash.com/photo-1652208785003-4100305584a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80',
   'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
@@ -70,6 +73,7 @@ const imgList = [
 
 function Home() {
   const { t } = useTranslation()
+  const currentLangCode = cookies.get('i18next') || 'uz'
 
   // eslint-disable-next-line no-unused-vars
   const [tabs, setTabs] = useState([
@@ -479,6 +483,26 @@ function Home() {
         >
           {t('view_all')}
         </Link>
+      </section>
+      <section
+        id="newsletter"
+        className="bg-slate-200 dark:bg-slate-700/50 rounded-3xl flex items-center justify-center text-center flex-col mt-40 xl:mx-32 py-16 px-5"
+      >
+        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize">
+          - {t('our_newsletter')}
+        </h4>
+        <h2 className="title mt-5 mb-12 sm:mb-16 w-full lg:w-4/5 xl:w-full">
+          {currentLangCode === 'uz' && 'Telegram'}
+          {currentLangCode === 'tg' && 'Телеграм'}
+          {t('sign_up_to_our_channel_in')}
+          {currentLangCode === 'ru' && ' Telegram'}
+        </h2>
+        <a
+          href="#!"
+          className="flex flex-wrap items-center justify-center gap-3 w-fit text-xs lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
+        >
+          {t('visit_the_channel')} <FaTelegram />
+        </a>
       </section>
     </>
   )

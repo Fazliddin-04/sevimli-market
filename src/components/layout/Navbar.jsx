@@ -9,6 +9,7 @@ import cart from '../../assets/cart.png'
 
 const languages = [
   { code: 'uz', name: 'Uz', country_code: 'uz' },
+  { code: 'tg', name: 'Ўз', country_code: 'tg' },
   { code: 'ru', name: 'Ru', country_code: 'ru' },
 ]
 
@@ -32,6 +33,7 @@ function Navbar() {
       setIsOn(true)
     }
   }, [])
+
   useEffect(() => {
     if (isOn) {
       localStorage.theme = 'dark'
@@ -169,11 +171,11 @@ function Navbar() {
                               <FaChevronLeft />
                             </div>
                             <Link
-                              to="/category/top"
+                              to="/category/for-breakfast"
                               onClick={() => setMenu(!menu)}
                               className="text-xl md:text-2xl mb-6 hover:text-red-700 active:text-red-700"
                             >
-                              {t('top')}
+                              {t('for-breakfast')}
                             </Link>
                             <Link
                               to="/category/chai-coffee"

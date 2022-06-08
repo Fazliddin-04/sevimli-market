@@ -104,7 +104,7 @@ function Category() {
   return (
     <div className="mb-5">
       <div className="text-sm breadcrumbs px-5">
-        <ul className="flex flex-wrap text-xl">
+        <ul className="flex flex-wrap text-sm sm:text-md lg:text-xl">
           <li>
             <Link to="/">{t('home')}</Link>
           </li>
@@ -161,8 +161,7 @@ function Category() {
         </>
       ) : (
         <p className="text-center mx-auto my-10 w-max">
-          {params.categoryName.toUpperCase().replace('-', ' ')} uchun ro'yxatlar
-          yo'q
+          {t(params.categoryName)} uchun tovarlar kiritilmagan
         </p>
       )}
     </div>

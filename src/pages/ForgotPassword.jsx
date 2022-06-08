@@ -14,7 +14,7 @@ function ForgotPassword() {
     try {
       const auth = getAuth()
       await sendPasswordResetEmail(auth, email)
-      toast.success("Email jo'natildi")
+      toast.success("Emailga xat yuborildi")
     } catch (error) {
       toast.error("Qayta tiklash xatini yuborib bo'lmadi")
     }

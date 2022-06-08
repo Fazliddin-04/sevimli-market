@@ -98,7 +98,7 @@ function Blog() {
   return (
     <div id="blog">
       <div className="text-sm breadcrumbs px-5">
-        <ul className="flex flex-wrap text-xl">
+        <ul className="flex flex-wrap text-sm sm:text-md lg:text-xl">
           <li>
             <Link to="/">Bosh sahifa</Link>
           </li>

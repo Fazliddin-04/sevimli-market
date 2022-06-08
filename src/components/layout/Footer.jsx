@@ -48,28 +48,40 @@ function Footer() {
       </div>
       <div className="flex flex-col gap-4 capitalize">
         <h3 className="text-2xl font-semibold mb-4">{t('categories')}</h3>
-        <Link to="/category/breakfast" className="hover:opacity-70 transition">
+        <Link
+          to="/category/for-breakfast"
+          className="hover:opacity-70 transition"
+        >
           {t('for-breakfast')}
         </Link>
-        <Link to="/category/lunch" className="hover:opacity-70 transition">
+        <Link to="/category/for-lunch" className="hover:opacity-70 transition">
           {t('for-lunch')}
         </Link>
-        <Link to="/category/table" className="hover:opacity-70 transition">
+        <Link to="/category/for-table" className="hover:opacity-70 transition">
           {t('for-table')}
         </Link>
-        <Link to="/category/home" className="hover:opacity-70 transition">
+        <Link to="/category/for-home" className="hover:opacity-70 transition">
           {t('for-home')}
         </Link>
-        <Link to="/category/kitchen" className="hover:opacity-70 transition">
+        <Link
+          to="/category/for-kitchen"
+          className="hover:opacity-70 transition"
+        >
           {t('for-kitchen')}
         </Link>
         <Link to="/category/gift" className="hover:opacity-70 transition">
           {t('gift')}
         </Link>
-        <Link to="/category/personal" className="hover:opacity-70 transition">
+        <Link
+          to="/category/personal-hygiene"
+          className="hover:opacity-70 transition"
+        >
           {t('personal-hygiene')}
         </Link>
-        <Link to="/category/appliances" className="hover:opacity-70 transition">
+        <Link
+          to="/category/home-appliances"
+          className="hover:opacity-70 transition"
+        >
           {t('home-appliances')}
         </Link>
         <Link to="/category/toys" className="hover:opacity-70 transition">

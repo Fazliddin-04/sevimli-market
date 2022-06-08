@@ -42,7 +42,7 @@ function SignIn() {
       )
 
       if (userCredential.user) {
-        navigate('/')
+        navigate('/profile')
       }
     } catch (error) {
       toast.error("Noto'g'ri hisob ma'lumotlari")

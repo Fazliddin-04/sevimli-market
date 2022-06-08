@@ -154,8 +154,9 @@ function Profile() {
         const userRef = doc(db, 'users', auth.currentUser.uid)
         await updateDoc(userRef, { name })
       }
-    } catch (error) {
+    } catch (err) {
       toast.error(t('personal_error'))
+      console.log(err)
     }
   }
 
@@ -176,14 +177,14 @@ function Profile() {
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
       <div className="modal  modal-bottom sm:modal-middle">
         <div className="modal-box bg-white dark:bg-slate-900">
-          <h3 className="font-bold text-lg">Siz tizimdan chiqmoqdasiz!</h3>
-          <p className="py-4">Buni xohlaganingizga ishonchingiz komilmi?</p>
+          <h3 className="font-bold text-lg">{t('logging_out')}</h3>
+          <p className="py-4">{t('are_you_sure')} </p>
           <div className="modal-action">
             <label htmlFor="my-modal-6" className="btn">
-              yo'q
+              {t('no')}
             </label>
             <label htmlFor="my-modal-6" className="btn" onClick={onLogout}>
-              Ha
+              {t('yes')}
             </label>
           </div>
         </div>

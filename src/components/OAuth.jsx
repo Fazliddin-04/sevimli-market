@@ -29,7 +29,7 @@ function OAuth() {
           tiemstamp: serverTimestamp(),
         })
       }
-      navigate('/')
+      navigate('/profile')
     } catch (error) {
       toast.error("Google bilan avtorizatsiya qilib bo'lmadi")
     }
