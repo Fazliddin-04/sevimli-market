@@ -23,10 +23,12 @@ function Profile() {
   const [menuPersonal, setMenuPersonal] = useState(true)
   const [menuListings, setMenuListings] = useState(false)
   const [menuBlog, setMenuBlog] = useState(false)
+  const [menuMsg, setMenuMsg] = useState(false)
   const [changeDetails, setChangeDetails] = useState(false)
   const [loading, setLoading] = useState(true)
   const [listings, setListings] = useState(null)
   const [posts, setPosts] = useState(null)
+  const [msgs, setMsgs] = useState(null)
 
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -43,61 +45,74 @@ function Profile() {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  useEffect(() => {
-    const fetchUserListings = async () => {
-      const listingsRef = collection(db, 'listings')
+  const fetchUserListings = async () => {
+    const listingsRef = collection(db, 'listings')
 
-      const q = query(
-        listingsRef,
-        where('userRef', '==', auth.currentUser.uid),
-        orderBy('timestamp', 'desc')
-      )
+    const q = query(
+      listingsRef,
+      where('userRef', '==', auth.currentUser.uid),
+      orderBy('timestamp', 'desc')
+    )
 
-      const querySnap = await getDocs(q)
+    const querySnap = await getDocs(q)
 
-      let listings = []
+    let listings = []
 
-      querySnap.forEach((doc) => {
-        listings.push({
-          id: doc.id,
-          data: doc.data(),
-        })
+    querySnap.forEach((doc) => {
+      listings.push({
+        id: doc.id,
+        data: doc.data(),
       })
+    })
 
-      setListings(listings)
-      setLoading(false)
-    }
+    setListings(listings)
+    setLoading(false)
+  }
 
-    fetchUserListings()
-  }, [auth.currentUser.uid])
+  const fetchUserPosts = async () => {
+    const postsRef = collection(db, 'posts')
 
-  useEffect(() => {
-    const fetchUserPosts = async () => {
-      const postsRef = collection(db, 'posts')
+    const q = query(
+      postsRef,
+      where('userRef', '==', auth.currentUser.uid),
+      orderBy('timestamp', 'desc')
+    )
 
-      const q = query(
-        postsRef,
-        where('userRef', '==', auth.currentUser.uid),
-        orderBy('timestamp', 'desc')
-      )
+    const querySnap = await getDocs(q)
 
-      const querySnap = await getDocs(q)
+    let posts = []
 
-      let posts = []
-
-      querySnap.forEach((doc) => {
-        posts.push({
-          id: doc.id,
-          data: doc.data(),
-        })
+    querySnap.forEach((doc) => {
+      posts.push({
+        id: doc.id,
+        data: doc.data(),
       })
+    })
 
-      setPosts(posts)
-      setLoading(false)
-    }
+    setPosts(posts)
+    setLoading(false)
+  }
 
-    fetchUserPosts()
-  }, [auth.currentUser.uid, menuBlog])
+  const fetchMsgs = async () => {
+    setLoading(true)
+    const postsRef = collection(db, 'messages')
+
+    const q = query(postsRef, orderBy('timestamp', 'desc'))
+
+    const querySnap = await getDocs(q)
+
+    let messages = []
+
+    querySnap.forEach((doc) => {
+      messages.push({
+        id: doc.id,
+        data: doc.data(),
+      })
+    })
+
+    setMsgs(messages)
+    setLoading(false)
+  }
 
   const months = [
     'January',
@@ -129,6 +144,7 @@ function Profile() {
       toast.success("Ro'yxat muvaffaqiyatli o'chirildi")
     }
   }
+
   const onDeletePost = async (postId) => {
     if (window.confirm("O'chirishni xohlaganingizga ishonchingiz komilmi?")) {
       await deleteDoc(doc(db, 'posts', postId))
@@ -189,8 +205,8 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between">
-        <div className="tabs">
+      {auth.currentUser.uid === 'LDbZ8YMeoNMdjAU4vB0umkIK59x1' && (
+        <div className="tabs flex justify-center">
           <div
             className={`${
               menuPersonal
@@ -201,6 +217,7 @@ function Profile() {
               setMenuPersonal(true)
               setMenuListings(false)
               setMenuBlog(false)
+              setMenuMsg(false)
             }}
           >
             {t('personal_details')}
@@ -213,6 +230,8 @@ function Profile() {
               setMenuListings(true)
               setMenuPersonal(false)
               setMenuBlog(false)
+              setMenuMsg(false)
+              fetchUserListings()
             }}
           >
             {t('products')}
@@ -225,12 +244,28 @@ function Profile() {
               setMenuBlog(true)
               setMenuListings(false)
               setMenuPersonal(false)
+              setMenuMsg(false)
+              fetchUserPosts()
             }}
           >
             {t('blog')}
           </div>
+          <div
+            className={`${
+              menuMsg ? 'tab-active' : 'text-black dark:text-white'
+            } tab tab-lg tab-lifted`}
+            onClick={() => {
+              setMenuMsg(true)
+              setMenuListings(false)
+              setMenuPersonal(false)
+              setMenuBlog(false)
+              fetchMsgs()
+            }}
+          >
+            {t('messages')}
+          </div>
         </div>
-      </div>
+      )}
       <ul className="p-4 mb-10 shadow-lg bg-slate-200 dark:bg-slate-700/50 backdrop-blur-lg rounded-xl rounded-tl-none w-full h-full">
         <div className={`${menuPersonal ? 'block' : 'hidden'}`}>
           <div className={`background--custom profile rounded-2xl`}>
@@ -368,6 +403,34 @@ function Profile() {
                       onDelete={() => onDeletePost(id)}
                       onEdit={() => onEditPost(id)}
                     />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div
+          className={`max-h-90 overflow-y-auto ${menuMsg ? 'block' : 'hidden'}`}
+        >
+          {!loading && msgs?.length > 0 && (
+            <div className="p-4 sm:p-0">
+              <ul className="flex flex-wrap justify-start items-start gap-x-2">
+                {msgs.map(({ id, data }) => (
+                  <li
+                    key={id}
+                    className="min-w-full w-2/5 border border-black dark:bg-white/20 my-5 p-3 rounded-lg"
+                  >
+                    <h4>{t(data.subject)}</h4>
+                    <h3 className="text-xl font-bold mb-3">
+                      From{' '}
+                      <a
+                        href={`mailto:${data.email}`}
+                        className="text-red-400 link-hover"
+                      >
+                        {data.fullname}
+                      </a>
+                    </h3>
+                    <p className="text-md lg:text-lg">{data.messageText}</p>
                   </li>
                 ))}
               </ul>
