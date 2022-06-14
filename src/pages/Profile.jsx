@@ -191,7 +191,7 @@ function Profile() {
   return (
     <>
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-      <div className="modal  modal-bottom sm:modal-middle">
+      <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box bg-white dark:bg-slate-900">
           <h3 className="font-bold text-lg">{t('logging_out')}</h3>
           <p className="py-4">{t('are_you_sure')} </p>
@@ -212,7 +212,7 @@ function Profile() {
               menuPersonal
                 ? 'dark:bg-slate-700/50 tab-active'
                 : 'text-black dark:text-white'
-            } tab tab-lg tab-lifted `}
+            } tab tab-sm sm:tab xl:tab-lg tab-lifted`}
             onClick={() => {
               setMenuPersonal(true)
               setMenuListings(false)
@@ -225,7 +225,7 @@ function Profile() {
           <div
             className={`${
               menuListings ? 'tab-active' : 'text-black dark:text-white'
-            } tab tab-lg tab-lifted`}
+            } tab tab-sm sm:tab xl:tab-lg tab-lifted`}
             onClick={() => {
               setMenuListings(true)
               setMenuPersonal(false)
@@ -239,7 +239,7 @@ function Profile() {
           <div
             className={`${
               menuBlog ? 'tab-active' : 'text-black dark:text-white'
-            } tab tab-lg tab-lifted`}
+            } tab tab-sm sm:tab xl:tab-lg tab-lifted`}
             onClick={() => {
               setMenuBlog(true)
               setMenuListings(false)
@@ -253,7 +253,7 @@ function Profile() {
           <div
             className={`${
               menuMsg ? 'tab-active' : 'text-black dark:text-white'
-            } tab tab-lg tab-lifted`}
+            } tab tab-sm sm:tab xl:tab-lg tab-lifted`}
             onClick={() => {
               setMenuMsg(true)
               setMenuListings(false)
