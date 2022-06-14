@@ -299,7 +299,7 @@ function Navbar() {
                       onClick={() => setMenu(!menu)}
                       className="sm:hidden text-xl md:text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl"
                     >
-                      Profil
+                      {t('profile')}
                     </Link>
                   </motion.div>
                 ) : (
@@ -379,7 +379,7 @@ function Navbar() {
                       onClick={() => setMenu(!menu)}
                       className="sm:hidden text-xl md:text-2xl bg-red-700 text-white w-full p-2 text-center rounded-3xl"
                     >
-                      Profil
+                      {t('profile')}
                     </Link>
                     <div
                       className="switch mt-4 flex sm:hidden"
