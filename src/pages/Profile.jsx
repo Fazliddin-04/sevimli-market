@@ -422,13 +422,27 @@ function Profile() {
                   >
                     <h4>{t(data.subject)}</h4>
                     <h3 className="text-xl font-bold mb-3">
-                      From{' '}
-                      <a
-                        href={`mailto:${data.email}`}
-                        className="text-red-400 link-hover"
-                      >
-                        {data.fullname}
-                      </a>
+                      {currentLangCode === 'ru' ? (
+                        <>
+                          {t('from')}
+                          <a
+                            href={`mailto:${data.email}`}
+                            className="text-red-400 link-hover"
+                          >
+                            {data.fullname}
+                          </a>
+                        </>
+                      ) : (
+                        <>
+                          <a
+                            href={`mailto:${data.email}`}
+                            className="text-red-400 link-hover"
+                          >
+                            {data.fullname}
+                          </a>
+                          {t('from')}
+                        </>
+                      )}
                     </h3>
                     <p className="text-md lg:text-lg">{data.messageText}</p>
                   </li>
@@ -441,5 +455,9 @@ function Profile() {
     </>
   )
 }
+
+//  {
+//    new Date(data.timestamp).toLocaleDateString('uz-Cyrl-UZ').split('/')
+//  }
 
 export default Profile
