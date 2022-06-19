@@ -53,12 +53,11 @@ function About() {
         <div className="text-xl xl:text-3xl xl:w-[600px] mt-8">
           <ul class="list-disc">
             <li className="mb-3 xl:mb-8 text-red-400 font-medium">
-              Natural Ingredients Only
+              Faqat sifatli mahsulotlar
             </li>
             <p className="mb-8">
-              10 yil muqaddam, kompaniya asoschilaridan biri faqat tabiiy
-              ingredientlardan foydalangan holda terini parvarish qilish va
-              go'zallik vositalarini ishlab chiqarish g'oyasi bilan chiqqanida,
+              4 yil muqaddam, kompaniya asoschilaridan biri odamlar uchun qulay
+              va sifatli mahsulotlarga ega bozor g'oyasi bilan chiqqanida,
               ikkilanib ham o'tirishmadi.
             </p>
             <li className="mb-3 xl:mb-8 text-red-400 font-medium capitalize">
@@ -66,9 +65,9 @@ function About() {
             </li>
             <p className="mb-8">
               Boshidanoq bizning asosiy maqsadlarimizdan biri hamyonbop
-              narxlarga ega bo'lgan yuqori sifatli mahsulotlarni taklif qilish
-              edi. Biz nihoyat bunga erishganimizga ishona olmaymiz va endi
-              bundan faxrlanamiz.
+              narxlarga ega bo'lgan yuqori sifatli mahsulotlar bozorini taklif
+              qilish edi. Biz nihoyat bunga erishganimizga ishona olmaymiz va
+              endi bundan faxrlanamiz.
             </p>
           </ul>
         </div>
