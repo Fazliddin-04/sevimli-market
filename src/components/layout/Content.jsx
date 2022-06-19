@@ -18,6 +18,8 @@ import EditListing from '../../pages/EditListing'
 import CreatePost from '../../pages/CreatePost'
 import EditPost from '../../pages/EditPost'
 import SinglePost from '../../pages/SinglePost'
+import Vision from '../../pages/Vision'
+import NotFound from '../../pages/NotFound'
 
 function Content() {
   const location = useLocation()
@@ -57,10 +59,12 @@ function Content() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/vision" element={<Vision />} />
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
   )
