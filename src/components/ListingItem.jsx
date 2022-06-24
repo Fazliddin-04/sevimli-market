@@ -15,7 +15,7 @@ function ListingItem({
     <div className="flex items-end flex-col my-5 w-full sm:w-auto">
       {onDelete && (
         <div className="flex items-center gap-5 text-center p-4 rounded-t-box border-b-0 border border-black dark:border-white">
-          <div className="" onClick={() => onDelete(id, title)}>
+          <div className="" onClick={() => onDelete(id)}>
             <FaRegTrashAlt />
           </div>
           {onEdit && (

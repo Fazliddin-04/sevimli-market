@@ -378,7 +378,7 @@ function Profile() {
             menuBlog ? 'block' : 'hidden'
           }`}
         >
-          {!loading && posts?.length > 0 && (
+          {!loading && (
             <div className="p-4 sm:p-0">
               <div>
                 <Link
@@ -392,19 +392,20 @@ function Profile() {
                 </Link>
               </div>
               <ul className="flex flex-wrap justify-center items-center gap-x-9">
-                {posts.map(({ id, data }) => (
-                  <li key={id}>
-                    <ListingItem
-                      id={id}
-                      title={data.title}
-                      category={data.category}
-                      timestamp={data.timestamp}
-                      imgUrl={data.imgUrls}
-                      onDelete={() => onDeletePost(id)}
-                      onEdit={() => onEditPost(id)}
-                    />
-                  </li>
-                ))}
+                {posts?.length > 0 &&
+                  posts.map(({ id, data }) => (
+                    <li key={id}>
+                      <ListingItem
+                        id={id}
+                        title={data.title}
+                        category={data.category}
+                        timestamp={data.timestamp}
+                        imgUrl={data.imgUrls}
+                        onDelete={() => onDeletePost(id)}
+                        onEdit={() => onEditPost(id)}
+                      />
+                    </li>
+                  ))}
               </ul>
             </div>
           )}

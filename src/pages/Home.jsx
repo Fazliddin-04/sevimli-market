@@ -381,78 +381,73 @@ function Home() {
           className="mySwiper h-full lg:w-2/5"
         >
           <SwiperSlide className="flex justify-center flex-col text-center md:text-left">
-            <div className="h-60 px-4 sm:h-72">
+            <div className="h-60 px-4 sm:h-fit">
               <img
                 src={
-                  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170'
+                  'https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                 }
                 alt=""
                 className="rounded-full w-16 h-16 sm:w-20 sm:h-20 object-cover mb-4 mx-auto md:mx-0"
               />
               <h3 className="text-xl sm:text-2xl font-semibold mb-2">
-                Johanna Doe
+                Endora L.
               </h3>
               <p className="text-sm sm:text-lg leading-relaxed">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
-                atque a voluptatem eaque culpa cumque facere possimus
+                {t('testimon-1')}
               </p>
             </div>
           </SwiperSlide>
           <SwiperSlide className="flex justify-center flex-col text-center md:text-left">
-            <div className="h-60 px-4 sm:h-72">
+            <div className="h-60 px-4 sm:h-fit">
               <img
                 src={
-                  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170'
+                  'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'
                 }
                 alt=""
                 className="rounded-full w-16 h-16 sm:w-20 sm:h-20 object-cover mx-auto md:mx-0 mb-4"
               />
               <h3 className="text-xl sm:text-2xl font-semibold mb-2">
-                Johanna Doe
+                Ilene R.
               </h3>
               <p className="text-sm sm:text-lg leading-relaxed">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
-                atque a voluptatem eaque culpa cumque facere possimus
+                {t('testimon-2')}
               </p>
             </div>
           </SwiperSlide>
           <SwiperSlide className="flex justify-center flex-col text-center md:text-left">
-            <div className="h-60 px-4 sm:h-72">
+            <div className="h-60 px-4 sm:h-fit">
               <img
                 src={
-                  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170'
+                  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                 }
                 alt=""
                 className="rounded-full w-16 h-16 sm:w-20 sm:h-20 object-cover mx-auto md:mx-0 mb-4"
               />
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2">
-                Johanna Doe
-              </h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2">May V.</h3>
               <p className="text-sm sm:text-lg leading-relaxed">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
-                atque a voluptatem eaque culpa cumque facere possimus
+                {t('testimon-3')}
               </p>
             </div>
           </SwiperSlide>
         </Swiper>
       </section>
-      <section id="blog" className="pt-20 lg:pt-36 pb-20">
-        <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
-          - {t('our_blog')}
-        </h4>
-        <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left">
-          {t('check_out_our_blog')}
-        </h2>
-        {window.innerWidth < 768 ? (
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={30}
-            navigation={true}
-            modules={[Navigation]}
-            className="mySwiper"
-          >
-            {!loading && posts ? (
-              posts.map(({ id, data }) => (
+      {!loading && posts?.length > 0 && (
+        <section id="blog" className="pt-20 lg:pt-36 pb-20">
+          <h4 className="font-bold text-sm sm:text-md md:text-lg italic text-orange-400 capitalize text-center md:text-left">
+            - {t('our_blog')}
+          </h4>
+          <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left">
+            {t('check_out_our_blog')}
+          </h2>
+          {window.innerWidth < 768 ? (
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={30}
+              navigation={true}
+              modules={[Navigation]}
+              className="mySwiper"
+            >
+              {posts.map(({ id, data }) => (
                 <SwiperSlide key={id}>
                   <Card
                     id={id}
@@ -462,28 +457,26 @@ function Home() {
                     linked={true}
                   />
                 </SwiperSlide>
-              ))
-            ) : (
-              <p>No listings</p>
-            )}
-          </Swiper>
-        ) : (
-          <AnimatePresence exitBeforeEnter>
-            {!loading &&
-              (posts ? (
-                <ListMotion items={posts} blog={true} />
-              ) : (
-                <p>No listings</p>
               ))}
-          </AnimatePresence>
-        )}
-        <Link
-          to="/blog"
-          className="block mt-16 mx-auto w-fit text-xs lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
-        >
-          {t('view_all')}
-        </Link>
-      </section>
+            </Swiper>
+          ) : (
+            <AnimatePresence exitBeforeEnter>
+              {!loading &&
+                (posts ? (
+                  <ListMotion items={posts} blog={true} />
+                ) : (
+                  <p>No posts</p>
+                ))}
+            </AnimatePresence>
+          )}
+          <Link
+            to="/blog"
+            className="block mt-16 mx-auto w-fit text-xs lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
+          >
+            {t('view_all')}
+          </Link>
+        </section>
+      )}
       <section
         id="newsletter"
         className="bg-slate-200 dark:bg-slate-700/50 rounded-3xl flex items-center justify-center text-center flex-col mt-40 xl:mx-32 py-16 px-5"

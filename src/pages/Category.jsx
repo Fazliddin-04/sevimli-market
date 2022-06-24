@@ -116,10 +116,10 @@ function Category() {
           - {t(params.categoryName)}
         </h4>
         <h2 className="title mt-5 mb-16 w-full lg:w-4/5 xl:w-full text-center md:text-left capitalize">
-          {(params.categoryName === 'top' && currentLangCode === 'uz') ||
-          (params.categoryName === 'toys' && currentLangCode === 'uz')
+          {(params.categoryName === 'toys' && currentLangCode === 'uz') ||
+          (params.categoryName === 'toys' && currentLangCode === 'tg')
             ? `${t(params.categoryName)} ${t('explore')}`
-            : currentLangCode === 'uz'
+            : currentLangCode === 'uz' || currentLangCode === 'tg'
             ? `${t(params.categoryName)} ${t('products')} ${t('explore')}`
             : params.categoryName === 'top' && currentLangCode === 'ru'
             ? 'Просмотр лучших продуктов'
