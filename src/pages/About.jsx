@@ -106,10 +106,10 @@ function About() {
           {currentLangCode === 'uz' && 'Telegram'}
           {currentLangCode === 'tg' && 'Телеграм'}
           {t('sign_up_to_our_channel_in')}
-          {currentLangCode === 'ru' && ' Telegram'}
+          {currentLangCode === 'ru' && ' Телеграм'}
         </h1>
         <a
-          href="#!"
+          href="https://t.me/sevimli_supermarket"
           className="flex flex-wrap items-center justify-center gap-3 w-fit text-xs lg:text-xl bg-red-700 text-white w-full p-4 sm:p-5 uppercase font-bold text-center rounded-3xl"
         >
           {t('visit_the_channel')} <FaTelegram />
